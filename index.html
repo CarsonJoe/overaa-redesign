@@ -1,0 +1,665 @@
+<!doctype html>
+<html lang="en" data-dir="bedrock">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Overaa Construction</title>
+<meta name="description" content="C. Overaa &amp; Co. — a fifth-generation, self-performing general contractor building California since 1907.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@400;600;800&family=Roboto+Condensed:wght@400;600;700&family=Roboto+Mono:wght@400;500&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,300..1000&display=swap">
+<style>
+/* ── Direction tokens ───────────────────────────── */
+:root, [data-dir="bedrock"] {
+  --bg: #F5F7F8; --surface: #FFFFFF; --fg: #2B2F33; --muted: #5B6570; --line: #DCE2E8;
+  --brand: #00447C; --brand-ink: #FFFFFF; --accent: #F04B47; --peak: #A7BACE; --logo: #00447C;
+  --f-display: "Roboto Slab", Georgia, serif; --f-body: "Roboto", system-ui, sans-serif; --f-label: "Roboto", system-ui, sans-serif;
+  --r: 3px; color-scheme: light;
+}
+[data-dir="blueprint"] {
+  --bg: #FFFFFF; --surface: #F5F7F8; --fg: #122030; --muted: #4F6074; --line: #C6D3E0; --grid: #EDF2F7;
+  --brand: #0067AC; --brand-ink: #FFFFFF; --accent: #F04B47; --peak: #A7BACE; --logo: #00447C;
+  --f-display: "Roboto Condensed", "Arial Narrow", sans-serif; --f-body: "Roboto", system-ui, sans-serif; --f-label: "Roboto Mono", ui-monospace, monospace;
+  --r: 0px; color-scheme: light;
+}
+[data-dir="groundwork"] {
+  --bg: #0A1520; --surface: #112233; --fg: #E1E6EB; --muted: #93A5B8; --line: #22364B;
+  --brand: #D06F1A; --brand-ink: #0A1520; --accent: #D06F1A; --peak: #D06F1A; --logo: #E1E6EB;
+  --f-display: "Roboto Flex", "Roboto", system-ui, sans-serif; --f-body: "Roboto Flex", "Roboto", system-ui, sans-serif; --f-label: "Roboto Flex", "Roboto", system-ui, sans-serif;
+  --r: 14px; color-scheme: dark;
+}
+
+/* ── Base ───────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+body { margin: 0; background: var(--bg); color: var(--fg); font: 400 17px/1.6 var(--f-body); -webkit-font-smoothing: antialiased; padding-bottom: 84px; transition: background-color .3s, color .3s; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--f-display); margin: 0; text-wrap: balance; line-height: 1.08; }
+h2 { font-size: clamp(30px, 4vw, 48px); font-weight: 600; }
+h3 { font-size: 20px; font-weight: 600; }
+p { margin: 0; }
+ul { list-style: none; margin: 0; padding: 0; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.wrap { max-width: 1280px; margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
+.section { padding-block: clamp(64px, 9vw, 120px); }
+.eyebrow { font: 500 13px/1.3 var(--f-label); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
+.lede { font-size: clamp(18px, 1.6vw, 21px); max-width: 60ch; color: var(--muted); }
+.head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px 40px; margin-bottom: 40px; }
+.head > div { display: grid; gap: 12px; }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: var(--r); background: var(--brand); color: var(--brand-ink); font: 600 15px/1 var(--f-body); text-decoration: none; border: 1.5px solid var(--brand); cursor: pointer; transition: transform .15s, background-color .15s; }
+.btn:hover { transform: translateY(-1px); }
+.btn.ghost { background: transparent; color: inherit; border-color: currentColor; }
+.arrow::after { content: "→"; transition: transform .15s; }
+a:hover > .arrow::after, .arrow:hover::after { transform: translateX(3px); }
+kbd { font: 500 12px/1 var(--f-label); padding: 3px 6px; border: 1px solid var(--line); border-radius: 4px; color: var(--muted); }
+.logo { height: 34px; width: auto; fill: var(--logo); display: block; }
+.concept { background: #0F1B28; color: #E1E6EB; font: 400 13px/1.4 "Roboto", system-ui, sans-serif; text-align: center; padding: 8px 16px; }
+.concept a { color: #A7BACE; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+/* ── Header ─────────────────────────────────────── */
+.top { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--bg) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; gap: 28px; height: 72px; }
+.brand { display: flex; align-items: end; gap: 10px; text-decoration: none; margin-right: auto; }
+.brand small { font: 400 13px/1 var(--f-body); color: var(--muted); padding-bottom: 3px; }
+.nav { display: flex; gap: 26px; font: 500 15px/1 var(--f-body); }
+.nav a { text-decoration: none; padding-block: 6px; border-bottom: 2px solid transparent; }
+.nav a:hover { border-color: var(--accent); }
+.search-btn { display: flex; align-items: center; gap: 10px; font: 500 14px/1 var(--f-body); color: var(--muted); background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); padding: 10px 12px; cursor: pointer; }
+.bar .btn { padding: 11px 18px; }
+@media (max-width: 1020px) { .nav { display: none; } .bar .btn { display: none; } .search-btn span { display: none; } .search-btn::before { content: "Menu"; color: var(--fg); } }
+
+/* ── Hero (shared) ──────────────────────────────── */
+.hero { position: relative; overflow: hidden; }
+.hero-media img { display: none; width: 100%; height: 100%; object-fit: cover; }
+[data-dir="bedrock"] .hm-bedrock, [data-dir="blueprint"] .hm-blueprint, [data-dir="groundwork"] .hm-groundwork { display: block; }
+.hero-body { position: relative; display: grid; gap: 22px; align-content: end; }
+.hero h1 { font-size: clamp(44px, 7vw, 96px); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.titleblock { display: none; }
+
+/* ── Stats ──────────────────────────────────────── */
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; }
+.stats div { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: 6px; padding: 28px 24px; }
+.stats dd { margin: 0; font: 700 clamp(36px, 4.4vw, 60px)/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.stats dt { font: 500 13px/1.35 var(--f-label); letter-spacing: .08em; text-transform: uppercase; }
+@media (max-width: 760px) { .stats { grid-template-columns: 1fr 1fr; } }
+
+/* ── Routes ─────────────────────────────────────── */
+.routes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.route { display: grid; grid-template-rows: auto auto 1fr; gap: 14px; padding: 32px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r); }
+.route p { color: var(--muted); }
+.route ul { display: grid; align-content: end; border-top: 1px solid var(--line); margin-top: 10px; }
+.route li a { display: flex; justify-content: space-between; padding-block: 13px; border-bottom: 1px solid var(--line); text-decoration: none; font-weight: 500; }
+.route li a:hover { color: var(--brand); }
+@media (max-width: 900px) { .routes { grid-template-columns: 1fr; } }
+
+/* ── Projects ───────────────────────────────────── */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 500 14px/1 var(--f-label); padding: 10px 14px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); color: var(--fg); cursor: pointer; }
+.chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+.chip span { opacity: .55; margin-left: 4px; font-variant-numeric: tabular-nums; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 28px; }
+.proj { position: relative; display: grid; text-decoration: none; background: var(--surface); border-radius: var(--r); overflow: hidden; }
+.proj img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .5s ease; }
+.proj:hover img { transform: scale(1.03); }
+.proj-meta { display: grid; gap: 4px; padding: 18px 20px 22px; }
+.proj-mkt { font: 500 12px/1.2 var(--f-label); letter-spacing: .1em; text-transform: uppercase; color: var(--accent); }
+.proj-loc { color: var(--muted); font-size: 15px; }
+.count { font: 500 14px/1 var(--f-label); color: var(--muted); }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+
+/* ── Builders / services ────────────────────────── */
+.split { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+.split > div { display: grid; gap: 20px; }
+.split img { border-radius: var(--r); width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+.services { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-top: 12px; }
+.services a { display: grid; gap: 6px; padding: 22px; background: var(--surface); text-decoration: none; }
+.services a:hover h3 { color: var(--brand); }
+.services p { color: var(--muted); font-size: 15px; line-height: 1.5; }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; } .split img { aspect-ratio: 16 / 10; } }
+@media (max-width: 520px) { .services { grid-template-columns: 1fr; } }
+
+/* ── Markets ────────────────────────────────────── */
+.markets { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+.markets a { display: flex; justify-content: space-between; align-items: center; padding: 20px 4px; border-bottom: 1px solid var(--line); text-decoration: none; font: 500 18px/1.3 var(--f-display); }
+.markets a:hover { color: var(--brand); }
+@media (max-width: 900px) { .markets { grid-template-columns: 1fr 1fr; column-gap: 20px; } }
+@media (max-width: 480px) { .markets { grid-template-columns: 1fr; } }
+
+/* ── News ───────────────────────────────────────── */
+.news { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+.news article { display: grid; gap: 12px; align-content: start; }
+.news img { aspect-ratio: 3 / 2; object-fit: cover; border-radius: var(--r); width: 100%; }
+.news time { font: 500 13px/1 var(--f-label); color: var(--muted); letter-spacing: .06em; text-transform: uppercase; }
+.news h3 a { text-decoration: none; }
+.news h3 a:hover { color: var(--brand); }
+.news p { color: var(--muted); font-size: 15px; }
+@media (max-width: 900px) { .news { grid-template-columns: 1fr; } .news article { grid-template-columns: 180px 1fr; column-gap: 20px; } .news img { grid-row: span 4; } }
+@media (max-width: 520px) { .news article { grid-template-columns: 1fr; } }
+
+/* ── Careers band ───────────────────────────────── */
+.careers { display: grid; grid-template-columns: 1fr 1fr; background: var(--brand); color: var(--brand-ink); border-radius: var(--r); overflow: hidden; }
+.careers > div { display: grid; gap: 18px; align-content: center; padding: clamp(28px, 5vw, 64px); }
+.careers .eyebrow, .careers p { color: inherit; opacity: .85; }
+.careers img { width: 100%; height: 100%; object-fit: cover; min-height: 280px; }
+.careers .btn { background: var(--brand-ink); color: var(--brand); border-color: var(--brand-ink); }
+.careers .btn.ghost { background: transparent; color: var(--brand-ink); }
+@media (max-width: 860px) { .careers { grid-template-columns: 1fr; } }
+
+/* ── Footer ─────────────────────────────────────── */
+.foot { border-top: 1px solid var(--line); padding-block: 64px 40px; }
+.foot-grid { display: grid; grid-template-columns: 1.4fr repeat(4, 1fr); gap: 32px; }
+.foot h3 { font: 600 13px/1 var(--f-label); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+.foot li a { display: block; padding-block: 5px; text-decoration: none; font-size: 15px; }
+.foot li a:hover { color: var(--brand); }
+.contact-card { display: grid; gap: 14px; font-size: 15px; }
+.contact-card address { font-style: normal; }
+.phone { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font: 600 22px/1 var(--f-display); font-variant-numeric: tabular-nums; }
+.phone a { text-decoration: none; }
+.copy { font: 500 12px/1 var(--f-label); padding: 6px 9px; border: 1px solid var(--line); border-radius: var(--r); background: none; color: var(--muted); cursor: pointer; }
+.fine { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; margin-top: 56px; padding-top: 24px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+.fine nav { display: flex; flex-wrap: wrap; gap: 18px; }
+@media (max-width: 1000px) { .foot-grid { grid-template-columns: 1fr 1fr; } .contact-card { grid-column: 1 / -1; } }
+
+/* ── Direction dock ─────────────────────────────── */
+.dock { position: fixed; z-index: 30; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; align-items: center; gap: 4px; padding: 5px; background: #0F1B28; color: #E1E6EB; border-radius: 99px; box-shadow: 0 10px 30px rgb(0 0 0 / .28); font: 500 13px/1 "Roboto", system-ui, sans-serif; max-width: calc(100vw - 32px); }
+.dock > span { padding-inline: 12px 6px; color: #93A5B8; white-space: nowrap; }
+.dock button { font: inherit; color: inherit; background: none; border: 0; border-radius: 99px; padding: 10px 14px; cursor: pointer; white-space: nowrap; }
+.dock button[aria-pressed="true"] { background: #E1E6EB; color: #0F1B28; }
+@media (max-width: 480px) { .dock > span { display: none; } .dock button { padding: 10px 11px; } }
+
+/* ── Search / menu dialog ───────────────────────── */
+dialog { width: min(640px, calc(100vw - 32px)); max-height: min(640px, 80vh); padding: 0; border: 1px solid var(--line); border-radius: max(var(--r), 8px); background: var(--bg); color: var(--fg); box-shadow: 0 30px 80px rgb(0 0 0 / .35); margin-top: 10vh; }
+dialog::backdrop { background: rgb(8 18 30 / .55); backdrop-filter: blur(3px); }
+.dlg { display: grid; grid-template-rows: auto 1fr auto; max-height: inherit; }
+.dlg input { font: 400 19px/1 var(--f-body); padding: 20px 22px; border: 0; border-bottom: 1px solid var(--line); background: transparent; color: inherit; outline: none; width: 100%; }
+.results { overflow: auto; padding: 8px; }
+.results h4 { font: 600 11px/1 var(--f-label); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin: 14px 12px 6px; }
+.results a { display: flex; justify-content: space-between; padding: 11px 12px; border-radius: 6px; text-decoration: none; }
+.results a[aria-selected="true"], .results a:hover { background: var(--surface); color: var(--brand); }
+.results a small { color: var(--muted); }
+.dlg footer { display: flex; gap: 16px; padding: 10px 16px; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); }
+
+/* ════════════ DIRECTION 1 · BEDROCK ════════════
+   Heritage institution. Full-bleed photography, slab serif, navy bands. */
+[data-dir="bedrock"] .hero { min-height: min(84vh, 760px); display: grid; color: #fff; }
+[data-dir="bedrock"] .hero-media { position: absolute; inset: 0; }
+[data-dir="bedrock"] .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 30 60 / 0) 30%, rgb(0 38 72 / .88) 100%); }
+[data-dir="bedrock"] .hero-body { padding-block: 120px 72px; width: 100%; }
+[data-dir="bedrock"] .hero .eyebrow, [data-dir="bedrock"] .hero .lede { color: rgb(255 255 255 / .86); }
+[data-dir="bedrock"] .hero h1 { font-weight: 800; letter-spacing: -.01em; }
+[data-dir="bedrock"] .hero h1 span { display: block; color: var(--peak); }
+[data-dir="bedrock"] .hero .btn { background: #fff; color: var(--brand); border-color: #fff; }
+[data-dir="bedrock"] .hero .btn.ghost { background: transparent; color: #fff; }
+[data-dir="bedrock"] .stats-band { background: var(--brand); color: #fff; }
+[data-dir="bedrock"] .stats div + div { border-left: 1px solid rgb(255 255 255 / .16); }
+[data-dir="bedrock"] .stats dt { color: var(--peak); }
+[data-dir="bedrock"] .grid .proj:first-child { grid-column: span 2; grid-row: span 2; }
+[data-dir="bedrock"] .grid .proj:first-child img { aspect-ratio: auto; height: 100%; }
+[data-dir="bedrock"] .grid .proj:first-child .proj-meta { position: absolute; inset: auto 0 0; background: linear-gradient(transparent, rgb(0 30 60 / .85)); color: #fff; padding-top: 60px; }
+[data-dir="bedrock"] .grid .proj:first-child .proj-loc { color: rgb(255 255 255 / .8); }
+[data-dir="bedrock"] .grid .proj:first-child h3 { font-size: 28px; }
+[data-dir="bedrock"] .markets-sec { background: var(--surface); }
+@media (max-width: 560px) { [data-dir="bedrock"] .grid .proj:first-child { grid-column: auto; grid-row: auto; } }
+
+/* ════════════ DIRECTION 2 · BLUEPRINT ════════════
+   Precision & transparency. Drawing-sheet grid, title blocks, redline accents, data-dense rows. */
+[data-dir="blueprint"] body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 32px 32px; }
+[data-dir="blueprint"] h1, [data-dir="blueprint"] h2 { text-transform: uppercase; font-weight: 700; letter-spacing: -.01em; }
+[data-dir="blueprint"] h3 { font-family: var(--f-body); font-weight: 500; }
+[data-dir="blueprint"] .section, [data-dir="blueprint"] .stats-band { border-bottom: 1px solid var(--line); }
+[data-dir="blueprint"] [data-sheet] .head > div::before { content: attr(data-sheet); font: 500 12px/1 var(--f-label); color: var(--accent); letter-spacing: .1em; }
+[data-dir="blueprint"] .hero { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "body media"; gap: 0 48px; max-width: 1280px; margin-inline: auto; padding: 56px clamp(16px, 4vw, 40px); }
+[data-dir="blueprint"] .hero-media { grid-area: media; position: relative; border: 1px solid var(--fg); padding: 10px; background: var(--bg); }
+[data-dir="blueprint"] .hero-media img { aspect-ratio: 4 / 5; height: auto; }
+[data-dir="blueprint"] .hero-media::before { content: "OVERAA · SITE PHOTO · SLAC, MENLO PARK"; position: absolute; left: 10px; bottom: -26px; font: 500 11px/1 var(--f-label); color: var(--muted); letter-spacing: .08em; }
+[data-dir="blueprint"] .hero-body { grid-area: body; padding: 0; align-content: center; }
+[data-dir="blueprint"] .hero h1 { font-size: clamp(44px, 6.4vw, 92px); line-height: .95; }
+[data-dir="blueprint"] .hero h1 span { color: var(--brand); }
+[data-dir="blueprint"] .titleblock { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--fg); margin: 12px 0 0; background: var(--bg); }
+[data-dir="blueprint"] .titleblock div { padding: 10px 12px; border-right: 1px solid var(--fg); border-bottom: 1px solid var(--fg); }
+[data-dir="blueprint"] .titleblock div:nth-child(2n) { border-right: 0; }
+[data-dir="blueprint"] .titleblock div:nth-last-child(-n+2) { border-bottom: 0; }
+[data-dir="blueprint"] .titleblock dt { font: 500 10px/1 var(--f-label); letter-spacing: .12em; color: var(--muted); text-transform: uppercase; margin-bottom: 6px; }
+[data-dir="blueprint"] .titleblock dd { margin: 0; font: 500 15px/1.2 var(--f-label); }
+[data-dir="blueprint"] .stats-band .wrap { padding-block: 0; }
+[data-dir="blueprint"] .stats { border-inline: 1px solid var(--line); background: var(--bg); }
+[data-dir="blueprint"] .stats div + div { border-left: 1px solid var(--line); }
+[data-dir="blueprint"] .stats dd { font-weight: 700; color: var(--brand); }
+[data-dir="blueprint"] .stats dt { color: var(--muted); }
+[data-dir="blueprint"] .route { background: var(--bg); border-color: var(--fg); }
+[data-dir="blueprint"] .chip { border-radius: 0; font-size: 13px; }
+[data-dir="blueprint"] .grid { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--fg); }
+[data-dir="blueprint"] .proj { grid-template-columns: 180px 1fr; align-items: center; gap: 24px; background: var(--bg); border-bottom: 1px solid var(--line); padding: 12px 0; }
+[data-dir="blueprint"] .proj img { aspect-ratio: 3 / 2; }
+[data-dir="blueprint"] .proj:hover img { transform: none; }
+[data-dir="blueprint"] .proj:hover { background: var(--surface); }
+[data-dir="blueprint"] .proj-meta { grid-template-columns: 2fr 1fr 1fr auto; align-items: center; gap: 20px; padding: 0 16px 0 0; }
+[data-dir="blueprint"] .proj-meta h3 { order: -1; font-size: 19px; }
+[data-dir="blueprint"] .proj-meta::after { content: "→"; color: var(--brand); }
+[data-dir="blueprint"] .proj-loc { font: 400 14px/1.2 var(--f-label); }
+[data-dir="blueprint"] .split img { aspect-ratio: 1; border: 1px solid var(--fg); padding: 8px; background: var(--bg); }
+[data-dir="blueprint"] .services { border-radius: 0; border-color: var(--fg); background: var(--fg); }
+[data-dir="blueprint"] .services a { background: var(--bg); }
+[data-dir="blueprint"] .markets { grid-template-columns: repeat(3, 1fr); border: 1px solid var(--fg); background: var(--bg); }
+[data-dir="blueprint"] .markets a { padding: 18px; border-right: 1px solid var(--line); font: 600 17px/1.2 var(--f-display); text-transform: uppercase; }
+[data-dir="blueprint"] .careers { background: var(--fg); color: var(--bg); --brand-ink: #FFFFFF; }
+[data-dir="blueprint"] .careers .btn { color: var(--fg); }
+[data-dir="blueprint"] .foot { background: var(--bg); }
+@media (max-width: 900px) {
+  [data-dir="blueprint"] .hero { grid-template-columns: 1fr; grid-template-areas: "body" "media"; gap: 48px; }
+  [data-dir="blueprint"] .hero-media img { aspect-ratio: 16 / 10; }
+  [data-dir="blueprint"] .markets { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  [data-dir="blueprint"] .proj { grid-template-columns: 96px 1fr; gap: 14px; }
+  [data-dir="blueprint"] .proj-meta { grid-template-columns: 1fr; gap: 2px; }
+  [data-dir="blueprint"] .proj-meta::after { display: none; }
+  [data-dir="blueprint"] .markets { grid-template-columns: 1fr; }
+}
+
+/* ════════════ DIRECTION 3 · GROUNDWORK ════════════
+   Cinematic & crew-first. Night-shift navy, wide heavy type, hi-vis orange, horizontal project reel. */
+[data-dir="groundwork"] .top { background: color-mix(in srgb, var(--bg) 70%, transparent); }
+[data-dir="groundwork"] h1, [data-dir="groundwork"] h2 { font-variation-settings: "wdth" 132; font-weight: 900; text-transform: uppercase; letter-spacing: -.015em; line-height: .92; }
+[data-dir="groundwork"] h2 { font-size: clamp(34px, 5.4vw, 72px); }
+[data-dir="groundwork"] h3 { font-variation-settings: "wdth" 112; font-weight: 700; }
+[data-dir="groundwork"] .eyebrow { color: var(--accent); font-weight: 700; }
+[data-dir="groundwork"] .hero { min-height: min(88vh, 820px); display: grid; }
+[data-dir="groundwork"] .hero-media { position: absolute; inset: 0; }
+[data-dir="groundwork"] .hero-media img { object-position: 30% 60%; filter: saturate(1.15); }
+[data-dir="groundwork"] .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(10 21 32 / .1), rgb(10 21 32 / .35)), linear-gradient(180deg, transparent 40%, var(--bg)); }
+[data-dir="groundwork"] .hero-body { padding-block: 140px 56px; width: 100%; }
+[data-dir="groundwork"] .hero h1 { font-size: clamp(52px, 10.5vw, 176px); }
+[data-dir="groundwork"] .hero h1 span { display: block; -webkit-text-stroke: 2px var(--fg); color: transparent; }
+[data-dir="groundwork"] .hero .lede { color: var(--fg); opacity: .85; }
+[data-dir="groundwork"] .btn { border-radius: 99px; }
+[data-dir="groundwork"] .stats dd { color: var(--accent); font-variation-settings: "wdth" 130; font-weight: 900; font-size: clamp(44px, 6vw, 84px); }
+[data-dir="groundwork"] .stats dt { color: var(--muted); }
+[data-dir="groundwork"] .stats div { border-top: 2px solid var(--line); padding-inline: 0 24px; }
+[data-dir="groundwork"] .route { border: 0; }
+[data-dir="groundwork"] .route li a:hover, [data-dir="groundwork"] .markets a:hover, [data-dir="groundwork"] .services a:hover h3, [data-dir="groundwork"] .news h3 a:hover { color: var(--accent); }
+[data-dir="groundwork"] .chip[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: var(--brand-ink); }
+[data-dir="groundwork"] .grid { grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: min(80vw, 440px); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 16px; scrollbar-color: var(--line) transparent; }
+[data-dir="groundwork"] .proj { scroll-snap-align: start; }
+[data-dir="groundwork"] .proj img { aspect-ratio: 4 / 5; }
+[data-dir="groundwork"] .proj-meta { position: absolute; inset: auto 0 0; background: linear-gradient(transparent, rgb(10 21 32 / .92)); padding-top: 80px; }
+[data-dir="groundwork"] .markets { grid-template-columns: repeat(3, 1fr); column-gap: 32px; }
+[data-dir="groundwork"] .markets a { font-variation-settings: "wdth" 125; font-weight: 800; text-transform: uppercase; font-size: clamp(18px, 2vw, 24px); }
+[data-dir="groundwork"] .careers { background: var(--surface); color: var(--fg); }
+[data-dir="groundwork"] .careers .btn { background: var(--accent); border-color: var(--accent); color: var(--brand-ink); }
+[data-dir="groundwork"] .careers .btn.ghost { background: transparent; color: var(--fg); border-color: var(--fg); }
+[data-dir="groundwork"] .careers h2 { color: var(--accent); }
+[data-dir="groundwork"] .services a:hover h3 { color: var(--accent); }
+@media (max-width: 900px) { [data-dir="groundwork"] .markets { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 480px) { [data-dir="groundwork"] .markets { grid-template-columns: 1fr; } }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 360.44 123.21"><polygon points="286.38 54.13 279.69 69.61 293.07 69.61 286.38 54.13"></polygon><polygon fill="var(--peak)" points="309.76 0 301.22 19.76 343.38 117.29 360.44 117.29 309.76 0"></polygon><polygon fill="var(--peak)" points="289.53 46.82 319.99 117.29 337.06 117.29 298.06 27.07 289.53 46.82"></polygon><path d="M229.84,74.39,214,111.16l-9.09-11.38a11.19,11.19,0,0,0,7.36-3.44A10.64,10.64,0,0,0,215,88.81a12.16,12.16,0,0,0-5.41-10.7q-5.43-3.7-15.68-3.71H170.25v42.8h18.38V103.07l9.13,14.13h32.15l8.65-25.81,8.65,25.81h18.57L247.29,74.39ZM195.66,92.71a6.78,6.78,0,0,1-4.11,1.07h-2.92V85.41h2.92a6.64,6.64,0,0,1,4.11,1.1,3.67,3.67,0,0,1,1.45,3.14A3.54,3.54,0,0,1,195.66,92.71Z"></path><path d="M150.43,101.09h15v-11h-15V86h16.49V74.39h-51.5l-8.25,25.82L98.93,74.39H83.12a36.62,36.62,0,0,0-1.74-5.31,35.9,35.9,0,0,0-8.89-12.4A39.75,39.75,0,0,0,69,53.82l-.07,0-.2-.15-.2-.13,0,0-.18-.13-.2-.14L67.92,53l-.2-.15-.21-.13-.22-.14-.2-.14-.21-.14-.22-.14-.21-.13-.21-.13L66,51.81l-.21-.13-.22-.13-.21-.13-.22-.13L65,51.17l-.22-.12-.22-.13-.21-.12-.23-.12-.22-.11-.23-.13-.22-.11-.22-.11L63,50.1,62.72,50l-.22-.11-.23-.11L62,49.66l-.23-.11-.23-.11-.23-.09-.23-.11-.24-.1-.23-.1-.23-.11-.25-.09-.23-.1-.23-.1-.24-.09-.24-.09-.24-.1-.24-.09a47,47,0,0,0-16.52-2.88h-.14a47.05,47.05,0,0,0-16.53,2.88l-.24.09-.23.1-.24.09-.24.09-.24.1-.24.1-.23.09-.24.11-.23.1-.23.1-.24.11-.23.09-.22.11-.24.11-.23.11-.22.11-.23.11-.23.11-.23.12-.22.11-.22.11-.23.13-.22.11L20,50.8l-.22.12-.22.13-.21.12-.22.12-.22.13-.22.13-.22.13-.21.13-.22.13-.2.13-.22.13-.21.14-.2.14-.21.14-.21.14-.21.13-.21.15-.21.15-.2.14-.2.15-.21.14-.2.15-.2.15-.2.15-.2.16-.2.15-.2.15-.2.16-.19.16-.2.16-.19.15-.19.17-.2.16-.19.16-.2.17-.19.17-.18.17-.2.16-.18.17-.19.18a35.2,35.2,0,0,0-6.09,7.24A35.58,35.58,0,0,0,3,69.08,40,40,0,0,0,3,99.59a35.9,35.9,0,0,0,8.88,12.34l.19.18.19.17.18.16.2.17.18.17.2.17.19.16.19.16.2.17.19.15.2.16.19.16.2.16.2.15.2.15.2.16.2.15.2.15.2.15.21.14.2.15.2.14.21.15.2.15.21.13.22.14.2.14.21.14.22.14.21.13.21.13.21.13.21.13.22.13.21.13.22.13.22.12.22.12.22.13.21.12.23.12.22.11.23.13.22.11.22.11.23.12.23.11.22.11.23.11.23.11.23.11.23.11.23.09.23.11.24.1.23.1.23.11.25.09.23.1.23.1.24.09.24.09.24.1.24.09a47,47,0,0,0,16.52,2.88h.14a47.05,47.05,0,0,0,16.53-2.88l.24-.09.23-.1.24-.09.24-.09.24-.1.24-.1.23-.09.24-.11.23-.1.23-.1.24-.11.23-.09.22-.11.24-.11.23-.11.22-.11.23-.11.23-.11.23-.12.22-.11.22-.11.23-.13.22-.11.22-.12.22-.12.22-.13.21-.12.22-.12.22-.13.22-.13.22-.13.21-.13.22-.13.2-.13.22-.13.21-.14.2-.14.21-.14.21-.14.21-.13.21-.15.21-.15.2-.14.2-.15.21-.14.2-.15.2-.15.2-.15.2-.16.2-.15.2-.15.2-.16.19-.16.2-.16.19-.15.19-.17.2-.16.19-.16.2-.17.19-.17.18-.17.2-.16.18-.17.19-.18a36,36,0,0,0,8.89-12.34,37.9,37.9,0,0,0,2.9-12.85l14.18,30.41h17.43L132,82.52V117.2h35.3V105.59H150.43ZM58.37,80.82v7.23l0,.22v.45l-.05.21v.44l0,.22V90l-.06.21-.06.21v.21l-.06.21V91l-.07.2-.07.2-.07.2-.07.2-.08.2-.08.19-.08.2-.07.19-.09.19-.09.19-.09.19-.09.19-.09.18-.09.18-.1.18-.11.18-.1.19-.1.17-.11.17-.11.18-.11.17-.11.18-.12.16-.12.17-.12.16-.12.17-.14.22-.13.16-.13.16-.13.16-.13.16-.14.15-.13.15-.15.15-.14.16-.15.15-.14.15-.15.13-.15.15L53.6,98l-.15.13-.15.14-.16.13L53,98.5l-.15.12-.16.13-.16.13-.17.12-.16.11-.16.11-.17.12-.16.11-.18.11-.17.11-.17.1-.17.11-.18.09-.17.1-.18.1-.18.09-.18.09-.18.09-.19.08-.18.09-.19.08-.18.07-.19.08-.19.08-.19.06-.2.08-.19.06-.2.07-.19.06-.2.06-.2.06-.2.06h-.42l-.19,0H37.79l-.21,0h-.41l-.2-.06-.2-.06-.2-.06-.19-.06-.2-.07L36,101l-.19-.08-.19-.06-.19-.08-.19-.08-.19-.07-.18-.08-.19-.09-.18-.08-.18-.09-.18-.09-.18-.09-.18-.1-.18-.1-.17-.09-.18-.11-.17-.1-.17-.11-.16-.11-.17-.11-.17-.12-.17-.11L32,99l-.16-.12-.16-.13-.16-.13-.16-.12-.15-.13-.15-.13-.16-.14L30.77,98l-.15-.14-.15-.15-.15-.13-.14-.15L30,97.25l-.14-.16-.14-.15-.14-.15-.14-.15-.13-.16-.13-.16-.13-.16L29,96l-.12-.17-.12-.17-.11-.16-.12-.17-.12-.16L28.32,95l-.12-.17L28,94.6l-.11-.17-.1-.17-.11-.19-.1-.18-.1-.18-.09-.18-.09-.18-.09-.19L27.18,93l-.09-.19L27,92.59l-.08-.19-.08-.2-.1-.2-.07-.2-.07-.2-.07-.2-.07-.2-.07-.2-.06-.2-.06-.21-.06-.21-.06-.21V90L26,89.75l-.05-.2v-.66l0-.21V80.62h0c0-.44.08-.94.1-1.53l.06-.21v-.21l.06-.21.06-.22.06-.2.06-.21.07-.2.07-.21.07-.2L26.6,77l.07-.21.09-.19.08-.19.08-.2.08-.19.09-.19.09-.2.09-.18.09-.19.09-.18.1-.19.1-.17.11-.18.1-.19.11-.17.1-.17.12-.18.11-.17.12-.18.12-.16.11-.17.12-.17.12-.17c.05,0,.08-.11.13-.16l.13-.16.13-.16c0-.06.09-.11.13-.16l.14-.16.14-.16.14-.15.14-.15.15-.16.14-.14.15-.16.15-.14.15-.14.15-.14.16-.14.15-.14.15-.13.16-.13.16-.13.16-.12.16-.13.16-.12.17-.12.17-.11.17-.12.16-.11.17-.11.17-.1.18-.11.17-.1.18-.1.18-.1.18-.09.18-.09.18-.09.18-.09.19-.09.18-.08.26-.11.19-.09.19-.07.19-.07.19-.08.2-.06.2-.07.19-.06.2-.06.2-.06.2-.06,1.08-.21.12,0,.29,0H46.8l.21,0h.21l.2.06.2.06.2.06.19.06.2.07.19.06.2.08.19.07.19.07.19.09.18.07.19.08.18.09.19.09.18.09.18.09.18.09.18.1.17.1.18.1.17.11.17.1.17.11.18.11.16.12.17.11.16.12.16.12.17.13.16.12.16.13L53,70l.16.13.16.14.15.14.15.14.15.14.15.14L54,71l.14.14.15.16.14.15.15.15.13.16.14.16s.09.1.13.16l.13.16.13.16.13.16.12.17.12.17.12.17.12.16.12.18.11.17.11.18.11.17.11.17.1.19.1.18.11.17.1.19.09.18.09.19.09.18.09.2.09.19.09.19.07.2.08.19.08.19.08.21.07.19.07.2.07.21.07.2.06.21.06.2v.22l.06.21.06.21v.43l.05.21v.44l0,.21v.45l0,.23Z"></path><polygon points="277.62 74.39 264.67 104.38 270.18 117.2 277.69 117.2 286.35 91.39 295.01 117.2 313.57 117.2 295.07 74.39 277.62 74.39"></polygon></symbol>
+</svg>
+
+<p class="concept">Design concept — not the official C. Overaa &amp; Co. website. Visit <a href="https://www.overaa.com">overaa.com</a> for the real thing.</p>
+
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="#top" aria-label="Overaa Construction, home">
+      <svg class="logo" viewBox="0 0 360.44 123.21" aria-hidden="true"><use href="#mark"/></svg>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#work">Projects</a>
+      <a href="#builders">Services</a>
+      <a href="#markets">Markets</a>
+      <a href="https://www.overaa.com/subcontractors/bidding-opportunities/">Subcontractors</a>
+      <a href="https://www.overaa.com/careers/open-positions/">Careers</a>
+      <a href="#news">News</a>
+    </nav>
+    <button class="search-btn" id="openSearch" type="button" aria-haspopup="dialog"><span>Search the site</span><kbd>/</kbd></button>
+    <a class="btn" href="#contact">Contact</a>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="hero-media">
+      <img class="hm hm-bedrock" src="assets/hammering-scaled.jpg" alt="An Overaa carpenter swinging a hammer on a deck against open sky">
+      <img class="hm hm-blueprint" src="assets/slac-exterior-1-1-002-v-.jpg" alt="Glass-and-steel research building at SLAC, Menlo Park">
+      <img class="hm hm-groundwork" src="assets/overaa-first-frame.jpg" alt="An excavator silhouetted against the dusk sky on an Overaa site">
+    </div>
+    <div class="wrap hero-body">
+      <p class="eyebrow">Fifth-generation general contractor · Richmond, California</p>
+      <h1>Building community <span>since 1907.</span></h1>
+      <p class="lede">A self-performing builder — a rarity among large commercial contractors. We don't just add a layer of management; we engineer the most efficient way to build and do the work with our own skilled crews.</p>
+      <div class="actions">
+        <a class="btn" href="#contact">Start a project <span class="arrow"></span></a>
+        <a class="btn ghost" href="#work">See our work</a>
+      </div>
+      <dl class="titleblock" aria-label="Company facts">
+        <div><dt>Established</dt><dd>1907</dd></div>
+        <div><dt>License</dt><dd>#106793</dd></div>
+        <div><dt>Headquarters</dt><dd>200 Parr Blvd, Richmond</dd></div>
+        <div><dt>Delivery</dt><dd>GC · Precon · Collaborative</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="stats-band" aria-label="Overaa by the numbers">
+    <div class="wrap">
+      <dl class="stats">
+        <div><dt>Years in business</dt><dd data-years>119</dd></div>
+        <div><dt>California infrastructure built</dt><dd>$15B</dd></div>
+        <div><dt>Industry awards won</dt><dd>100+</dd></div>
+        <div><dt>Generations of family ownership</dt><dd>5th</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="section" data-sheet="A-001 · START HERE">
+    <div class="wrap">
+      <div class="head"><div><p class="eyebrow">Start here</p><h2>What brings you to Overaa?</h2></div></div>
+      <div class="routes">
+        <article class="route">
+          <p class="eyebrow">Owners &amp; architects</p>
+          <h3>Plan and build your next facility</h3>
+          <p>Bring us in early. Our preconstruction team prices, sequences and de-risks the work before the first shovel.</p>
+          <ul>
+            <li><a href="https://www.overaa.com/services/preconstruction/">Preconstruction <span class="arrow"></span></a></li>
+            <li><a href="https://www.overaa.com/services/collaborative-delivery/">Collaborative delivery <span class="arrow"></span></a></li>
+            <li><a href="#contact">Talk to our team <span class="arrow"></span></a></li>
+          </ul>
+        </article>
+        <article class="route">
+          <p class="eyebrow">Subcontractors &amp; suppliers</p>
+          <h3>Bid on current work</h3>
+          <p>Get prequalified once, then see open bid packages across every active Overaa project.</p>
+          <ul>
+            <li><a href="https://www.overaa.com/subcontractors/bidding-opportunities/">Bidding opportunities <span class="arrow"></span></a></li>
+            <li><a href="https://www.overaa.com/subcontractors/get-prequalified/">Get prequalified <span class="arrow"></span></a></li>
+          </ul>
+        </article>
+        <article class="route">
+          <p class="eyebrow">Careers</p>
+          <h3>Build your career with us</h3>
+          <p>Craft professionals, project engineers, interns. Ranked the #1 place to work among large Bay Area GCs two years running.</p>
+          <ul>
+            <li><a href="https://www.overaa.com/careers/open-positions/">Open positions <span class="arrow"></span></a></li>
+            <li><a href="https://www.overaa.com/careers/career-paths/internships/">Internships <span class="arrow"></span></a></li>
+            <li><a href="https://www.overaa.com/careers/career-paths/craft-professionals/">Craft professionals <span class="arrow"></span></a></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="work" data-sheet="A-101 · PROJECTS">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="eyebrow">Selected work</p><h2>Built across California</h2></div>
+        <a class="btn ghost" href="https://www.overaa.com/projects/">All projects <span class="arrow"></span></a>
+      </div>
+      <div class="chips" id="chips" role="group" aria-label="Filter projects by market"></div>
+      <p class="count" id="count" aria-live="polite" style="margin-top:16px"></p>
+      <div class="grid" id="grid"></div>
+    </div>
+  </section>
+
+  <section class="section" id="builders" data-sheet="A-201 · SERVICES">
+    <div class="wrap split">
+      <div>
+        <p class="eyebrow">Real builders</p>
+        <h2>We build it ourselves.</h2>
+        <p class="lede">Rock-solid reliable for more than a century. We're fiercely loyal to our clients, grateful to our community, and determined to keep building California's future with our own hands.</p>
+        <div class="services">
+          <a href="https://www.overaa.com/services/preconstruction/"><h3>Preconstruction</h3><p>Estimating, constructability and schedule, locked in before you break ground.</p></a>
+          <a href="https://www.overaa.com/services/general-contracting/"><h3>General contracting</h3><p>Self-performed work with our own crews, from foundations to finish.</p></a>
+          <a href="https://www.overaa.com/services/collaborative-delivery/"><h3>Collaborative delivery</h3><p>Design-build and progressive models where owner, designer and builder share one table.</p></a>
+          <a href="https://www.overaa.com/about/sustainability-2/"><h3>Sustainable design &amp; construction</h3><p>Lower-carbon materials and methods, built into the plan from day one.</p></a>
+        </div>
+      </div>
+      <img src="assets/about-homepage.jpg" alt="Green angled fins on a parking structure façade built by Overaa" loading="lazy">
+    </div>
+  </section>
+
+  <section class="section markets-sec" id="markets" data-sheet="A-301 · MARKETS">
+    <div class="wrap">
+      <div class="head"><div><p class="eyebrow">Markets</p><h2>Twelve markets, one standard</h2></div></div>
+      <nav class="markets" id="markets-list" aria-label="Markets"></nav>
+    </div>
+  </section>
+
+  <section class="section" id="news" data-sheet="A-401 · NEWS">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="eyebrow">Latest news</p><h2>From the field</h2></div>
+        <a class="btn ghost" href="https://www.overaa.com/news/">All stories <span class="arrow"></span></a>
+      </div>
+      <div class="news">
+        <article>
+          <img src="assets/1.jpg" alt="Coliseum College Prep groundbreaking with hard hats and shovels" loading="lazy">
+          <time datetime="2026-06-30">June 30, 2026</time>
+          <h3><a href="https://www.overaa.com/news/new-high-school-classroom-wing-gym-at-coliseum-college-preparatory-academy-break-ground/">New high school classroom wing &amp; gym at Coliseum College Prep break ground</a></h3>
+          <p>Fourteen classrooms, two state-of-the-art science labs and a new gymnasium for the Coliseum College Preparatory Academy community.</p>
+        </article>
+        <article>
+          <img src="assets/jesd-07.jpg" alt="Completed school campus building with red accent wall" loading="lazy">
+          <time datetime="2026-06-30">June 30, 2026</time>
+          <h3><a href="https://www.overaa.com/news/new-transitional-kindergarten-building-at-morello-park-elementary-school-a-new-auxiliary-gym-at-alhambra-high-school-break-ground/">Morello Park TK building &amp; Alhambra High auxiliary gym break ground</a></h3>
+          <p>Martinez Unified breaks ground on two new facilities: a transitional kindergarten building and an auxiliary gym.</p>
+        </article>
+        <article>
+          <img src="assets/2026-3.jpg" alt="The Overaa team celebrating the 2026 Best Place to Work award" loading="lazy">
+          <time datetime="2026-06-16">June 16, 2026</time>
+          <h3><a href="https://www.overaa.com/awards-recognition/overaa-wins-best-place-to-work-honor/">Overaa wins Best Place to Work honor</a></h3>
+          <p>For the second year in a row, ranked the #1 general contractor in the Large Company category by the San Francisco Business Times.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="careers">
+        <div>
+          <p class="eyebrow">Careers at Overaa</p>
+          <h2>The #1 place to work among large Bay Area builders.</h2>
+          <p>Two years running. Real mentorship, clear career paths and your own crew. Join a fifth-generation family business that builds things that last.</p>
+          <div class="actions">
+            <a class="btn" href="https://www.overaa.com/careers/open-positions/">View open positions <span class="arrow"></span></a>
+            <a class="btn ghost" href="https://www.overaa.com/careers/culture-and-benefits/">Culture &amp; benefits</a>
+          </div>
+        </div>
+        <img src="assets/2026-3.jpg" alt="" loading="lazy">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot" id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="contact-card">
+        <svg class="logo" style="height:40px" viewBox="0 0 360.44 123.21" aria-hidden="true"><use href="#mark"/></svg>
+        <address>C. Overaa &amp; Co.<br>200 Parr Blvd.<br>Richmond, CA 94801</address>
+        <div class="phone"><a href="tel:+15102340926" id="phone">510-234-0926</a><button class="copy" type="button" data-copy="510-234-0926">Copy</button></div>
+        <p style="color:var(--muted)">Fax 510-237-2435 · License #106793</p>
+        <div class="actions"><a class="btn" href="https://www.overaa.com/contact/">Contact us <span class="arrow"></span></a></div>
+      </div>
+      <div><h3>About</h3><ul>
+        <li><a href="https://www.overaa.com/about/history/">History</a></li>
+        <li><a href="https://www.overaa.com/about/leadership/">Leadership</a></li>
+        <li><a href="https://www.overaa.com/about/safety/">Safety</a></li>
+        <li><a href="https://www.overaa.com/about/values/">Values</a></li>
+        <li><a href="https://www.overaa.com/about/community/">Community</a></li>
+      </ul></div>
+      <div><h3>Services</h3><ul>
+        <li><a href="https://www.overaa.com/services/preconstruction/">Preconstruction</a></li>
+        <li><a href="https://www.overaa.com/services/general-contracting/">General contracting</a></li>
+        <li><a href="https://www.overaa.com/services/collaborative-delivery/">Collaborative delivery</a></li>
+        <li><a href="https://www.overaa.com/about/sustainability-2/">Sustainability</a></li>
+      </ul></div>
+      <div><h3>Subcontractors</h3><ul>
+        <li><a href="https://www.overaa.com/subcontractors/bidding-opportunities/">Bidding opportunities</a></li>
+        <li><a href="https://www.overaa.com/subcontractors/get-prequalified/">Get prequalified</a></li>
+      </ul></div>
+      <div><h3>Careers</h3><ul>
+        <li><a href="https://www.overaa.com/careers/open-positions/">Open positions</a></li>
+        <li><a href="https://www.overaa.com/careers/culture-and-benefits/">Culture &amp; benefits</a></li>
+        <li><a href="https://www.overaa.com/careers/professional-development/">Professional development</a></li>
+        <li><a href="https://www.overaa.com/careers/career-paths/">Career paths</a></li>
+      </ul></div>
+    </div>
+    <div class="fine">
+      <span>© <span data-year>2026</span> C. Overaa &amp; Co.</span>
+      <nav aria-label="Legal and social">
+        <a href="https://www.overaa.com/privacy-policy/">Privacy</a>
+        <a href="https://www.overaa.com/terms-of-use/">Terms</a>
+        <a href="https://www.overaa.com/accessibility-statement/">Accessibility</a>
+        <a href="https://www.linkedin.com/company/c.-overaa-&amp;-co./">LinkedIn</a>
+        <a href="https://www.instagram.com/overaaconstruction/">Instagram</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<div class="dock" role="group" aria-label="Design direction">
+  <span>Direction</span>
+  <button type="button" data-dir="bedrock" title="Heritage institution: full-bleed photography, slab serif, navy bands">1 · Bedrock</button>
+  <button type="button" data-dir="blueprint" title="Precision: drawing-sheet grid, title blocks, data-dense rows">2 · Blueprint</button>
+  <button type="button" data-dir="groundwork" title="Cinematic: night-shift navy, wide heavy type, hi-vis orange">3 · Groundwork</button>
+</div>
+
+<dialog id="search" aria-label="Search the site">
+  <div class="dlg">
+    <label class="sr" for="q">Search pages</label>
+    <input id="q" type="search" placeholder="Search pages: bids, careers, safety…" autocomplete="off">
+    <div class="results" id="results" role="listbox"></div>
+    <footer><span><kbd>↑</kbd> <kbd>↓</kbd> move</span><span><kbd>Enter</kbd> open</span><span><kbd>Esc</kbd> close</span></footer>
+  </div>
+</dialog>
+
+<script>
+const SITE = "https://www.overaa.com";
+const MARKETS = [
+  ["Education", "education"], ["Lab & Technology", "lifescience"], ["Transportation & Public Safety", "transportation"],
+  ["Water", "water"], ["Industrial", "industrial"], ["Energy", "energy"], ["Healthcare", "healthcare"],
+  ["Parking Structures", "parking"], ["Commercial", "commercial"], ["Housing", "housing"],
+  ["Concrete & Seismic", "concrete-seismic"], ["Cultural", "cultural"],
+];
+// ponytail: names marked * are descriptive placeholders; swap in real project names from the CMS.
+const PROJECTS = [
+  { name: "Sufism Reoriented Sanctuary", market: "Cultural", place: "Walnut Creek", img: "sufism-reoriented-sanctu" },
+  { name: "SLAC research building", market: "Lab & Technology", place: "Menlo Park", img: "slac-exterior-1-1-002-v-" },
+  { name: "West County Health Center", market: "Healthcare", place: "San Pablo", img: "west-county-health-cente" },
+  { name: "SJC airport fire station", market: "Transportation & Public Safety", place: "San José", img: "marjang-sjc-firestation-" },
+  { name: "Water treatment plant*", market: "Water", place: "Bay Area", img: "dji-0420-copy" },
+  { name: "Reservoir & pump station*", market: "Water", place: "Bay Area", img: "dji-0005-mv-prroelrothit" },
+  { name: "Parking structure*", market: "Parking Structures", place: "Bay Area", img: "2018-billy-hustace-photo" },
+  { name: "Bayfront industrial facility*", market: "Industrial", place: "Bay Area", img: "dji-0055-1" },
+  { name: "Mixed-use building*", market: "Commercial", place: "Bay Area", img: "m-3249-0013-1" },
+  { name: "Office & lab building*", market: "Lab & Technology", place: "Bay Area", img: "nt-coa-1258-edit-1" },
+  { name: "Educator housing*", market: "Housing", place: "Bay Area", img: "jesd-07" },
+];
+const PAGES = [
+  ["About", [["History", "/about/history/"], ["Leadership", "/about/leadership/"], ["Safety", "/about/safety/"], ["Community", "/about/community/"], ["Values", "/about/values/"]]],
+  ["Services", [["Preconstruction", "/services/preconstruction/"], ["General Contracting", "/services/general-contracting/"], ["Collaborative Delivery", "/services/collaborative-delivery/"], ["Sustainable Design & Construction", "/about/sustainability-2/"]]],
+  ["Projects & Markets", [["All Projects", "/projects/"], ...MARKETS.map(([t, s]) => [t, `/markets/${s}/`])]],
+  ["Subcontractors", [["Bidding Opportunities", "/subcontractors/bidding-opportunities/"], ["Get Prequalified", "/subcontractors/get-prequalified/"]]],
+  ["Careers", [["Open Positions", "/careers/open-positions/"], ["Culture & Benefits", "/careers/culture-and-benefits/"], ["Professional Development", "/careers/professional-development/"], ["Career Paths", "/careers/career-paths/"], ["Internships", "/careers/career-paths/internships/"], ["Early Career Builders", "/careers/career-paths/early-career-builders/"], ["Craft Professionals", "/careers/career-paths/craft-professionals/"], ["Experienced Professionals", "/careers/career-paths/experienced-professionals/"]]],
+  ["News", [["Latest News", "/news/"], ["Media", "/news/media/"], ["Awards & Recognition", "/news/awards-recognition/"]]],
+  ["Company", [["Contact Us", "/contact/"], ["Privacy Policy", "/privacy-policy/"], ["Accessibility Statement", "/accessibility-statement/"]]],
+];
+const esc = s => s.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+const slugOf = m => MARKETS.find(x => x[0] === m)[1];
+
+// Live facts
+const year = new Date().getFullYear();
+document.querySelector("[data-years]").textContent = year - 1907;
+document.querySelector("[data-year]").textContent = year;
+
+// Markets index
+document.getElementById("markets-list").innerHTML = MARKETS.map(([t, s]) =>
+  `<a href="${SITE}/markets/${s}/">${esc(t)} <span class="arrow"></span></a>`).join("");
+
+// Project explorer
+const grid = document.getElementById("grid"), chips = document.getElementById("chips"), count = document.getElementById("count");
+const used = ["All", ...new Set(PROJECTS.map(p => p.market))];
+chips.innerHTML = used.map(m => {
+  const n = m === "All" ? PROJECTS.length : PROJECTS.filter(p => p.market === m).length;
+  return `<button class="chip" type="button" data-m="${esc(m)}" aria-pressed="${m === "All"}">${esc(m)}<span>${n}</span></button>`;
+}).join("");
+function showProjects(m) {
+  const list = m === "All" ? PROJECTS : PROJECTS.filter(p => p.market === m);
+  grid.innerHTML = list.map(p => `
+    <a class="proj" href="${SITE}/markets/${slugOf(p.market)}/">
+      <img src="assets/${p.img}.jpg" alt="" loading="lazy">
+      <div class="proj-meta"><span class="proj-mkt">${esc(p.market)}</span><h3>${esc(p.name)}</h3><span class="proj-loc">${esc(p.place)}</span></div>
+    </a>`).join("");
+  count.textContent = `${list.length} project${list.length === 1 ? "" : "s"}${m === "All" ? "" : " in " + m}`;
+  chips.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-pressed", c.dataset.m === m));
+}
+chips.addEventListener("click", e => { const c = e.target.closest(".chip"); if (c) showProjects(c.dataset.m); });
+showProjects("All");
+
+// Direction switcher: hash > saved > default
+const DIRS = ["bedrock", "blueprint", "groundwork"];
+function setDir(d) {
+  document.documentElement.dataset.dir = d;
+  document.querySelectorAll(".dock button").forEach(b => b.setAttribute("aria-pressed", b.dataset.dir === d));
+  try { localStorage.setItem("overaa-dir", d); } catch {}
+  history.replaceState(null, "", "#" + d);
+}
+let saved; try { saved = localStorage.getItem("overaa-dir"); } catch {}
+setDir([location.hash.slice(1), saved].find(d => DIRS.includes(d)) || "bedrock");
+document.querySelector(".dock").addEventListener("click", e => { const b = e.target.closest("button"); if (b) setDir(b.dataset.dir); });
+
+// Copy phone
+document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied"; }
+  catch { getSelection().selectAllChildren(document.getElementById("phone")); b.textContent = "Selected"; }
+  setTimeout(() => b.textContent = "Copy", 1600);
+}));
+
+// Search / menu palette
+const dlg = document.getElementById("search"), q = document.getElementById("q"), results = document.getElementById("results");
+let sel = 0;
+function renderResults() {
+  const term = q.value.trim().toLowerCase();
+  let html = "", i = 0;
+  for (const [group, pages] of PAGES) {
+    const hits = pages.filter(([t]) => (t + " " + group).toLowerCase().includes(term));
+    if (!hits.length) continue;
+    html += `<h4>${esc(group)}</h4>` + hits.map(([t, u]) =>
+      `<a role="option" href="${SITE}${u}" aria-selected="${i++ === sel}">${esc(t)} <small>${u}</small></a>`).join("");
+  }
+  results.innerHTML = html || `<p style="padding:16px;color:var(--muted)">No pages match “${esc(q.value)}”. Try “bid”, “jobs” or “safety”.</p>`;
+}
+function openSearch() { q.value = ""; sel = 0; renderResults(); dlg.showModal(); q.focus(); }
+document.getElementById("openSearch").addEventListener("click", openSearch);
+q.addEventListener("input", () => { sel = 0; renderResults(); });
+q.addEventListener("keydown", e => {
+  const opts = results.querySelectorAll("a");
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    e.preventDefault();
+    sel = (sel + (e.key === "ArrowDown" ? 1 : -1) + opts.length) % opts.length;
+    opts.forEach((o, i) => o.setAttribute("aria-selected", i === sel));
+    opts[sel]?.scrollIntoView({ block: "nearest" });
+  } else if (e.key === "Enter" && opts[sel]) { location.href = opts[sel].href; }
+});
+dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
+document.addEventListener("keydown", e => {
+  const typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
+  if ((e.key === "/" && !typing) || (e.key === "k" && (e.metaKey || e.ctrlKey))) { e.preventDefault(); openSearch(); }
+  else if (!typing && !dlg.open && ["1", "2", "3"].includes(e.key)) setDir(DIRS[e.key - 1]);
+});
+</script>
+</body>
+</html>
