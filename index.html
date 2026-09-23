@@ -9,7 +9,7 @@
 <link rel="icon" href="assets/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@400;600;800&family=Roboto+Condensed:wght@400;600;700&family=Roboto+Mono:wght@400;500&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,300..1000&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Roboto+Slab:wght@400;600;800&family=Roboto+Condensed:wght@400;600;700&family=Roboto+Mono:wght@400;500&family=Roboto+Flex:opsz,wdth,wght@8..144,25..151,300..1000&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&family=Big+Shoulders+Stencil+Display:wght@700;900&family=Ultra&display=swap">
 <style>
 /* ── Direction tokens ───────────────────────────── */
 :root, [data-dir="bedrock"] {
@@ -75,7 +75,8 @@ kbd { font: 500 12px/1 var(--f-label); padding: 3px 6px; border: 1px solid var(-
 /* ── Hero (shared) ──────────────────────────────── */
 .hero { position: relative; overflow: hidden; }
 .hero-media img { display: none; width: 100%; height: 100%; object-fit: cover; }
-[data-dir="bedrock"] .hm-bedrock, [data-dir="blueprint"] .hm-blueprint, [data-dir="groundwork"] .hm-groundwork { display: block; }
+[data-dir="bedrock"] .hm-bedrock, [data-dir="blueprint"] .hm-blueprint, [data-dir="groundwork"] .hm-groundwork,
+[data-dir="cyanotype"] .hm-cyanotype, [data-dir="formwork"] .hm-formwork, [data-dir="press"] .hm-press { display: block; }
 .hero-body { position: relative; display: grid; gap: 22px; align-content: end; }
 .hero h1 { font-size: clamp(44px, 7vw, 96px); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
@@ -167,7 +168,8 @@ kbd { font: 500 12px/1 var(--f-label); padding: 3px 6px; border: 1px solid var(-
 @media (max-width: 1000px) { .foot-grid { grid-template-columns: 1fr 1fr; } .contact-card { grid-column: 1 / -1; } }
 
 /* ── Direction dock ─────────────────────────────── */
-.dock { position: fixed; z-index: 30; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; align-items: center; gap: 4px; padding: 5px; background: #0F1B28; color: #E1E6EB; border-radius: 99px; box-shadow: 0 10px 30px rgb(0 0 0 / .28); font: 500 13px/1 "Roboto", system-ui, sans-serif; max-width: calc(100vw - 32px); }
+.dock { position: fixed; z-index: 30; left: 50%; bottom: calc(14px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); display: flex; align-items: center; gap: 4px; padding: 5px; background: #0F1B28; color: #E1E6EB; border-radius: 99px; box-shadow: 0 10px 30px rgb(0 0 0 / .28); font: 500 13px/1 "Roboto", system-ui, sans-serif; max-width: calc(100vw - 32px); overflow-x: auto; scrollbar-width: none; }
+.dock i { flex: none; width: 1px; height: 20px; background: #34475C; margin-inline: 4px; }
 .dock > span { padding-inline: 12px 6px; color: #93A5B8; white-space: nowrap; }
 .dock button { font: inherit; color: inherit; background: none; border: 0; border-radius: 99px; padding: 10px 14px; cursor: pointer; white-space: nowrap; }
 .dock button[aria-pressed="true"] { background: #E1E6EB; color: #0F1B28; }
@@ -299,12 +301,212 @@ dialog::backdrop { background: rgb(8 18 30 / .55); backdrop-filter: blur(3px); }
 @media (max-width: 900px) { [data-dir="groundwork"] .markets { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 480px) { [data-dir="groundwork"] .markets { grid-template-columns: 1fr; } }
 
+
+/* ── Texture library: SVG noise rendered once as images ── */
+:root {
+  --grain: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23g)'/></svg>");
+  --grain-o: 0;
+}
+body::after { content: ""; position: fixed; inset: 0; z-index: 25; pointer-events: none; background: var(--grain); opacity: var(--grain-o); mix-blend-mode: overlay; }
+
+/* ════════════ DIRECTION 4 · CYANOTYPE ════════════
+   The process blueprints were printed with in 1907. Prussian-blue emulsion brushed on rag paper,
+   every photograph a sun print, plates numbered like a 19th-century folio. */
+[data-dir="cyanotype"] {
+  --bg: #EFF0EB; --surface: #F6F6F2; --fg: #0B2A5B; --muted: #4A5D7C; --line: #C3CCD8;
+  --brand: #0B3A78; --brand-ink: #EFF0EB; --accent: #0B3A78; --peak: #6F90C0; --logo: #0B2A5B; --prussian: #0A2C63;
+  --f-display: "Old Standard TT", "Times New Roman", serif; --f-body: "Roboto", system-ui, sans-serif; --f-label: "Roboto Mono", ui-monospace, monospace;
+  --r: 0px; --grain-o: .38; color-scheme: light;
+  --emulsion: radial-gradient(120% 160% at 28% 35%, #1A4E92, #0A2C63 55%, #061D45);
+  --brush: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1000 600' preserveAspectRatio='none'><filter id='b' x='-10%' y='-10%' width='120%' height='120%'><feTurbulence type='fractalNoise' baseFrequency='.003 .05' numOctaves='4' seed='7' result='t'/><feDisplacementMap in='SourceGraphic' in2='t' scale='80' xChannelSelector='R' yChannelSelector='G'/></filter><rect x='50' y='44' width='900' height='512' filter='url(%23b)'/></svg>");
+  --deckle: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 300' preserveAspectRatio='none'><filter id='d' x='-5%' y='-5%' width='110%' height='110%'><feTurbulence type='fractalNoise' baseFrequency='.07' numOctaves='3' seed='3' result='t'/><feDisplacementMap in='SourceGraphic' in2='t' scale='10'/></filter><rect x='7' y='7' width='386' height='286' filter='url(%23d)'/></svg>");
+  --paper: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='480' height='480'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.035' numOctaves='4' seed='21' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .2  0 0 0 0 .25  0 0 0 0 .33  0 0 0 -.35 .2'/></filter><rect width='480' height='480' filter='url(%23p)'/></svg>");
+}
+[data-dir="cyanotype"] body { background: var(--paper), var(--bg); }
+[data-dir="cyanotype"] h1, [data-dir="cyanotype"] h2 { font-weight: 400; letter-spacing: -.012em; }
+[data-dir="cyanotype"] h2 { font-size: clamp(34px, 4.6vw, 60px); }
+[data-dir="cyanotype"] h3 { font-weight: 700; font-size: 21px; }
+[data-dir="cyanotype"] .hero { display: grid; grid-template-columns: 1.05fr .95fr; grid-template-areas: "body media"; align-items: center; gap: 56px; max-width: 1280px; margin-inline: auto; padding: 64px clamp(16px, 4vw, 40px) 80px; }
+[data-dir="cyanotype"] .hero-body { grid-area: body; }
+[data-dir="cyanotype"] .hero h1 { font-size: clamp(54px, 7.6vw, 116px); line-height: .96; }
+[data-dir="cyanotype"] .hero h1 span { display: block; font-style: italic; color: var(--brand); }
+[data-dir="cyanotype"] .hero-media { grid-area: media; }
+[data-dir="cyanotype"] .hero-media img { aspect-ratio: 4 / 5; object-position: 64% 50%; filter: url(#duo-cyan); -webkit-mask: var(--brush) center / 100% 100% no-repeat; mask: var(--brush) center / 100% 100% no-repeat; }
+[data-dir="cyanotype"] .hero-media::after { content: "Plate I. — Carpenter at work. Cyanotype."; display: block; margin-top: 6px; text-align: center; font: italic 16px/1.3 var(--f-display); color: var(--muted); }
+[data-dir="cyanotype"] .stats-band .wrap { background: var(--emulsion); color: #EFF0EB; padding: 56px 8%; -webkit-mask: var(--brush) center / 100% 100% no-repeat; mask: var(--brush) center / 100% 100% no-repeat; }
+[data-dir="cyanotype"] .stats dd { font-weight: 400; font-style: italic; font-size: clamp(44px, 5vw, 72px); }
+[data-dir="cyanotype"] .stats dt { color: #B5C7E2; font-size: 11px; }
+[data-dir="cyanotype"] .route { background: none; border: 0; border-top: 2px solid var(--fg); padding: 26px 0 0; }
+[data-dir="cyanotype"] .route li a:hover { font-style: italic; }
+[data-dir="cyanotype"] .chip { border-radius: 0; background: none; font: 400 17px/1 var(--f-display); padding: 8px 12px; }
+[data-dir="cyanotype"] .chip[aria-pressed="true"] { background: var(--prussian); color: var(--bg); border-color: var(--prussian); font-style: italic; }
+[data-dir="cyanotype"] .grid { counter-reset: plate 1; gap: 48px 36px; }
+[data-dir="cyanotype"] .proj { counter-increment: plate; background: none; overflow: visible; }
+[data-dir="cyanotype"] .proj img { filter: url(#duo-cyan); -webkit-mask: var(--deckle) center / 100% 100% no-repeat; mask: var(--deckle) center / 100% 100% no-repeat; }
+[data-dir="cyanotype"] .proj:hover img { transform: rotate(-.8deg) scale(1.015); }
+[data-dir="cyanotype"] .proj-meta { padding: 12px 4px 0; justify-items: center; text-align: center; }
+[data-dir="cyanotype"] .proj-meta::before { content: "Plate " counter(plate, upper-roman) "."; font: italic 16px/1 var(--f-display); color: var(--muted); }
+[data-dir="cyanotype"] .proj-mkt { color: var(--muted); font-size: 11px; order: 3; }
+[data-dir="cyanotype"] .proj-meta h3 { font-weight: 400; font-size: 23px; }
+[data-dir="cyanotype"] .split img { aspect-ratio: 4 / 5; filter: url(#duo-cyan); -webkit-mask: var(--brush) center / 100% 100% no-repeat; mask: var(--brush) center / 100% 100% no-repeat; }
+[data-dir="cyanotype"] .services { background: none; border: 0; border-top: 2px solid var(--fg); gap: 0 28px; }
+[data-dir="cyanotype"] .services a { background: none; padding: 20px 0; border-bottom: 1px solid var(--line); }
+[data-dir="cyanotype"] .markets { grid-template-columns: repeat(3, 1fr); column-gap: 40px; }
+[data-dir="cyanotype"] .markets a { font: 400 24px/1.2 var(--f-display); }
+[data-dir="cyanotype"] .markets a:hover { font-style: italic; }
+[data-dir="cyanotype"] .news img { filter: url(#duo-cyan); -webkit-mask: var(--deckle) center / 100% 100% no-repeat; mask: var(--deckle) center / 100% 100% no-repeat; }
+[data-dir="cyanotype"] .news h3 { font-weight: 400; font-size: 23px; }
+[data-dir="cyanotype"] .careers { background: var(--emulsion); color: #EFF0EB; --brand: #0A2C63; --brand-ink: #EFF0EB; padding: 48px 6%; -webkit-mask: var(--brush) center / 100% 100% no-repeat; mask: var(--brush) center / 100% 100% no-repeat; }
+[data-dir="cyanotype"] .careers h2 { font-style: italic; }
+[data-dir="cyanotype"] .careers img { filter: url(#duo-cyan-rev); }
+
+/* ════════════ DIRECTION 5 · FORMWORK ════════════
+   The page is a board-formed concrete wall: lit aggregate, plank seams, form-tie holes, bug holes.
+   Type is spray-stenciled; survey-orange marks the things you can act on. */
+[data-dir="formwork"] {
+  --bg: #B6B9BA; --surface: rgb(255 255 255 / .2); --fg: #16202A; --muted: #36414B; --line: rgb(22 32 42 / .24);
+  --brand: #16202A; --brand-ink: #ECEDEB; --accent: #D06F1A; --peak: #D06F1A; --logo: #00447C;
+  --f-display: "Big Shoulders Stencil Display", "Roboto Condensed", Impact, sans-serif; --f-body: "Roboto", system-ui, sans-serif; --f-label: "Roboto Condensed", "Arial Narrow", sans-serif;
+  --r: 0px; --grain-o: .55; color-scheme: light;
+  --concrete: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='320'><filter id='c'><feTurbulence type='fractalNoise' baseFrequency='.005 .14' numOctaves='4' seed='4' stitchTiles='stitch' result='t'/><feDiffuseLighting in='t' lighting-color='%23d8dada' surfaceScale='2.4'><feDistantLight azimuth='235' elevation='58'/></feDiffuseLighting></filter><rect width='600' height='320' filter='url(%23c)'/></svg>");
+  --pits: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='260' height='260'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='.16' numOctaves='2' seed='11' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .1  0 0 0 0 .11  0 0 0 0 .12  -22 0 0 0 5.6'/></filter><rect width='260' height='260' filter='url(%23p)'/></svg>");
+  --board: repeating-linear-gradient(180deg, transparent 0 157px, rgb(20 24 28 / .2) 157px 158px, rgb(255 255 255 / .3) 158px 160px);
+  --ties: radial-gradient(circle, rgb(20 24 28 / .62) 0 3.5px, rgb(20 24 28 / .2) 4.5px, rgb(255 255 255 / .38) 6px, transparent 7px);
+  --spray: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 24'><filter id='o'><feGaussianBlur stdDeviation='3'/></filter><filter id='s'><feTurbulence type='fractalNoise' baseFrequency='.7' numOctaves='2' result='n'/><feDisplacementMap in='SourceGraphic' in2='n' scale='5'/></filter><path d='M6 14 C60 6 130 18 234 8' fill='none' stroke='%23D06F1A' stroke-width='15' stroke-linecap='round' opacity='.35' filter='url(%23o)'/><path d='M6 14 C60 6 130 18 234 8' fill='none' stroke='%23D06F1A' stroke-width='6' stroke-linecap='round' filter='url(%23s)'/></svg>");
+  --cast: inset 3px 3px 8px rgb(0 0 0 / .32), inset -2px -2px 3px rgb(255 255 255 / .4);
+}
+[data-dir="formwork"] body { background: var(--ties) 0 0 / 300px 160px, var(--board), var(--pits), var(--concrete), var(--bg); }
+[data-dir="formwork"] h1, [data-dir="formwork"] h2 { font-weight: 900; text-transform: uppercase; line-height: .86; letter-spacing: .005em; text-shadow: 0 0 1px rgb(22 32 42 / .55), 0 0 12px rgb(22 32 42 / .22); filter: url(#spray); }
+[data-dir="formwork"] h2 { font-size: clamp(44px, 6vw, 88px); }
+[data-dir="formwork"] h2::after { content: ""; display: block; width: 220px; max-width: 60%; height: 24px; margin-top: 16px; background: var(--spray) left / contain no-repeat; }
+[data-dir="formwork"] h3 { font-family: var(--f-label); font-weight: 700; }
+[data-dir="formwork"] .eyebrow { color: var(--fg); font-weight: 700; }
+[data-dir="formwork"] .eyebrow::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 7px 3px rgb(208 111 26 / .4); vertical-align: 0; }
+[data-dir="formwork"] .btn { font: 700 15px/1 var(--f-label); text-transform: uppercase; letter-spacing: .08em; }
+[data-dir="formwork"] .hero { display: grid; grid-template-columns: 1.1fr .9fr; grid-template-areas: "body media"; align-items: end; gap: 48px; max-width: 1280px; margin-inline: auto; padding: 64px clamp(16px, 4vw, 40px) 80px; }
+[data-dir="formwork"] .hero-body { grid-area: body; }
+[data-dir="formwork"] .hero h1 { font-size: clamp(64px, 9vw, 144px); }
+[data-dir="formwork"] .hero h1 span { display: block; color: #00447C; }
+[data-dir="formwork"] .hero .lede { color: var(--fg); }
+[data-dir="formwork"] .hero-media { grid-area: media; padding: 14px; background: rgb(0 0 0 / .07); box-shadow: var(--cast); }
+[data-dir="formwork"] .hero { align-items: center; }
+[data-dir="formwork"] .hero-media img { aspect-ratio: 4 / 5; filter: saturate(.85) contrast(1.05); }
+[data-dir="formwork"] .stats-band, [data-dir="formwork"] .careers { background: var(--board), var(--concrete); background-color: #1B3350; background-blend-mode: normal, multiply; color: #ECEDEB; }
+[data-dir="formwork"] .stats div + div { border-left: 1px solid rgb(255 255 255 / .14); }
+[data-dir="formwork"] .stats dd { font-weight: 900; font-size: clamp(52px, 6.4vw, 96px); text-shadow: 0 0 10px rgb(236 237 235 / .25); filter: url(#spray); }
+[data-dir="formwork"] .stats dt { color: #F0A262; font-weight: 700; }
+[data-dir="formwork"] .route, [data-dir="formwork"] .services a { background: rgb(0 0 0 / .06); border: 0; box-shadow: var(--cast); }
+[data-dir="formwork"] .route li a:hover, [data-dir="formwork"] .services a:hover h3, [data-dir="formwork"] .markets a:hover { color: #00447C; }
+[data-dir="formwork"] .services { background: none; border: 0; gap: 14px; overflow: visible; }
+[data-dir="formwork"] .chip { border-radius: 0; background: none; border: 1.5px solid var(--fg); font: 700 14px/1 var(--f-label); text-transform: uppercase; letter-spacing: .06em; }
+[data-dir="formwork"] .chip[aria-pressed="true"] { background: var(--fg); color: var(--brand-ink); }
+[data-dir="formwork"] .grid { grid-template-columns: repeat(2, 1fr); gap: 28px; }
+[data-dir="formwork"] .proj { background: rgb(0 0 0 / .06); padding: 12px; box-shadow: var(--cast); }
+[data-dir="formwork"] .grid .proj:first-child { grid-column: 1 / -1; }
+[data-dir="formwork"] .grid .proj:first-child img { aspect-ratio: 21 / 9; }
+[data-dir="formwork"] .proj img { aspect-ratio: 3 / 2; filter: saturate(.85); }
+[data-dir="formwork"] .proj-meta { grid-template-columns: 1fr auto; align-items: start; padding: 16px 4px 4px; }
+[data-dir="formwork"] .proj-meta h3 { grid-row: 1; font: 900 32px/1 var(--f-display); text-transform: uppercase; }
+[data-dir="formwork"] .proj-loc { grid-row: 2; }
+[data-dir="formwork"] .proj-mkt { grid-row: 1; grid-column: 2; background: var(--accent); color: var(--fg); padding: 6px 8px; font-weight: 700; }
+[data-dir="formwork"] .split img { padding: 12px; background: rgb(0 0 0 / .07); box-shadow: var(--cast); }
+[data-dir="formwork"] .markets a { font: 800 28px/1 var(--f-display); text-transform: uppercase; }
+[data-dir="formwork"] .news img { box-shadow: 0 1px 0 rgb(255 255 255 / .4), 0 0 0 10px rgb(0 0 0 / .06); }
+[data-dir="formwork"] .news h3 { font-size: 21px; }
+[data-dir="formwork"] .careers { --brand: #16202A; --brand-ink: #ECEDEB; }
+[data-dir="formwork"] .careers .eyebrow { color: #ECEDEB; }
+[data-dir="formwork"] .careers .btn { background: var(--accent); border-color: var(--accent); color: var(--fg); }
+[data-dir="formwork"] .careers .btn.ghost { background: none; color: #ECEDEB; border-color: #ECEDEB; }
+[data-dir="formwork"] .careers h2 { text-shadow: 0 0 12px rgb(236 237 235 / .2); }
+@media (max-width: 700px) { [data-dir="formwork"] .grid { grid-template-columns: 1fr; } }
+
+/* ════════════ DIRECTION 6 · PRESS ════════════
+   A letterpress broadside. Woodtype in navy and red on steel-blue stock,
+   speckled ink coverage, a slightly mis-registered second pass, halftone plates. */
+[data-dir="press"] {
+  --bg: #D1D8DE; --surface: #DAE0E5; --fg: #0F2748; --muted: #3A4F6E; --line: rgb(15 39 72 / .3);
+  --brand: #0F2748; --brand-ink: #DAE0E5; --accent: #A92422; --peak: #C8322F; --logo: #0F2748;
+  --f-display: "Ultra", "Roboto Slab", Georgia, serif; --f-body: "Roboto Slab", Georgia, serif; --f-label: "Roboto Condensed", "Arial Narrow", sans-serif;
+  --r: 0px; --grain-o: .45; color-scheme: light;
+  --fiber: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='400'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='.03 .6' numOctaves='3' seed='5' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .06  0 0 0 0 .12  0 0 0 0 .22  1.1 0 0 0 -.7'/></filter><rect width='400' height='400' filter='url(%23f)'/></svg>");
+  --speckle: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='k'><feTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='3' seed='9' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  9 0 0 0 -2.4'/></filter><rect width='160' height='160' filter='url(%23k)'/></svg>");
+  --dots: radial-gradient(circle, #000 1.2px, rgb(0 0 0 / .76) 1.9px) 0 0 / 4px 4px;
+}
+[data-dir="press"] body { background: var(--fiber), var(--bg); font-size: 16.5px; }
+[data-dir="press"] h1, [data-dir="press"] h2 { font-weight: 400; line-height: .98; text-transform: uppercase; -webkit-mask: var(--speckle); mask: var(--speckle); filter: url(#rough); }
+[data-dir="press"] h2 { font-size: clamp(34px, 4.8vw, 64px); }
+[data-dir="press"] h3 { font-family: "Roboto Slab", Georgia, serif; font-weight: 700; }
+[data-dir="press"] .eyebrow { color: var(--accent); font-weight: 700; }
+[data-dir="press"] .btn { font: 700 14px/1 var(--f-label); text-transform: uppercase; letter-spacing: .1em; }
+[data-dir="press"] .hero { display: grid; grid-template-columns: 1.1fr .9fr; grid-template-areas: "body media"; gap: 32px; max-width: 1280px; margin-inline: auto; padding: 56px clamp(16px, 4vw, 40px) 72px; }
+[data-dir="press"] .hero-body { grid-area: body; border: 7px double var(--fg); padding: clamp(24px, 4vw, 52px); text-align: center; justify-items: center; align-content: center; gap: 20px; }
+[data-dir="press"] .hero .eyebrow { display: flex; align-items: center; gap: 14px; color: var(--fg); }
+[data-dir="press"] .hero .eyebrow::before, [data-dir="press"] .hero .eyebrow::after { content: ""; width: 36px; height: 2px; background: var(--accent); }
+[data-dir="press"] .hero h1 { font-size: clamp(40px, 5.6vw, 84px); }
+[data-dir="press"] .hero h1 span { display: block; color: var(--accent); mix-blend-mode: multiply; transform: translate(3px, 2px) rotate(-.6deg); }
+[data-dir="press"] .hero .lede { color: var(--fg); max-width: 46ch; }
+[data-dir="press"] .actions { justify-content: center; }
+[data-dir="press"] .titleblock { display: flex; flex-wrap: wrap; justify-content: center; width: 100%; margin: 6px 0 0; padding-block: 12px; border-block: 2px solid var(--fg); }
+[data-dir="press"] .titleblock div { display: flex; gap: 6px; padding-inline: 14px; font: 700 12px/1.4 var(--f-label); letter-spacing: .1em; text-transform: uppercase; }
+[data-dir="press"] .titleblock div + div { border-left: 1px solid var(--line); }
+[data-dir="press"] .titleblock dt { color: var(--accent); }
+[data-dir="press"] .titleblock dd { margin: 0; }
+[data-dir="press"] .hero-media { grid-area: media; border: 2px solid var(--fg); padding: 10px; }
+[data-dir="press"] .hero-media img { min-height: 440px; object-position: 50% 30%; }
+[data-dir="press"] .hero-media img, [data-dir="press"] .proj img, [data-dir="press"] .split img, [data-dir="press"] .news img, [data-dir="press"] .careers img { filter: url(#duo-press); -webkit-mask: var(--dots); mask: var(--dots); }
+[data-dir="press"] .proj:hover img { transform: none; filter: none; -webkit-mask: none; mask: none; }
+[data-dir="press"] .stats { border-block: 7px double var(--fg); }
+[data-dir="press"] .stats div + div { border-left: 1px solid var(--line); }
+[data-dir="press"] .stats dd { font-weight: 400; -webkit-mask: var(--speckle); mask: var(--speckle); }
+[data-dir="press"] .stats div:nth-child(2) dd { color: var(--accent); }
+[data-dir="press"] .stats dt { font-weight: 700; }
+[data-dir="press"] .route { background: none; border: 2px solid var(--fg); }
+[data-dir="press"] .chip[aria-pressed="true"] { background: var(--fg); color: var(--bg); }
+[data-dir="press"] .grid { align-items: start; }
+[data-dir="press"] .chip { border-radius: 0; background: none; border: 1.5px solid var(--fg); font: 700 13px/1 var(--f-label); text-transform: uppercase; letter-spacing: .08em; }
+[data-dir="press"] .grid .proj:first-child { grid-column: span 2; }
+[data-dir="press"] .grid .proj:first-child img { aspect-ratio: auto; height: 100%; max-height: 520px; }
+[data-dir="press"] .proj { background: none; border: 2px solid var(--fg); padding: 8px; align-content: start; }
+[data-dir="press"] .proj-meta { padding: 12px 4px 4px; }
+[data-dir="press"] .proj-mkt { font-weight: 700; }
+[data-dir="press"] .split img { border: 2px solid var(--fg); padding: 8px; }
+[data-dir="press"] .services { background: var(--fg); border: 2px solid var(--fg); gap: 2px; }
+[data-dir="press"] .services a { background: var(--fiber), var(--bg); }
+[data-dir="press"] .markets { grid-template-columns: 1fr 1fr; column-gap: 56px; border-top: 0; }
+[data-dir="press"] .markets a { gap: 12px; padding: 13px 0; border-bottom: 0; font: 700 18px/1.2 "Roboto Slab", Georgia, serif; text-transform: uppercase; letter-spacing: .03em; }
+[data-dir="press"] .markets .arrow { flex: 1; display: flex; justify-content: flex-end; border-bottom: 2px dotted var(--muted); line-height: 1; color: var(--accent); }
+[data-dir="press"] .careers { background: var(--fg); color: var(--bg); --brand: #0F2748; --brand-ink: #DAE0E5; -webkit-mask: var(--speckle); mask: var(--speckle); }
+[data-dir="press"] .careers .eyebrow { color: #F08A86; }
+[data-dir="press"] .careers h2 { -webkit-mask: none; mask: none; }
+@media (max-width: 560px) { [data-dir="press"] .grid .proj:first-child { grid-column: auto; } [data-dir="press"] .markets { grid-template-columns: 1fr; } }
+
+/* Textured heroes stack on narrow screens */
+@media (max-width: 900px) {
+  [data-dir="cyanotype"] .hero, [data-dir="formwork"] .hero, [data-dir="press"] .hero { grid-template-columns: 1fr; grid-template-areas: "body" "media"; }
+  [data-dir="cyanotype"] .hero-media img, [data-dir="formwork"] .hero-media img { aspect-ratio: 4 / 3; }
+  [data-dir="press"] .hero-media img { min-height: 0; aspect-ratio: 4 / 3; }
+}
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 </head>
 <body>
 
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <filter id="rough"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="spray"><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="1" seed="6" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="3.5" xChannelSelector="R" yChannelSelector="G"/></filter>
+  <filter id="duo-cyan" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0"/>
+    <feComponentTransfer><feFuncR type="table" tableValues=".03 .08 .5 .87"/><feFuncG type="table" tableValues=".12 .24 .63 .9"/><feFuncB type="table" tableValues=".3 .5 .82 .94"/></feComponentTransfer>
+  </filter>
+  <filter id="duo-cyan-rev" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0"/>
+    <feComponentTransfer><feFuncR type="table" tableValues=".02 .1 .7 .94"/><feFuncG type="table" tableValues=".1 .28 .78 .95"/><feFuncB type="table" tableValues=".26 .55 .9 .96"/></feComponentTransfer>
+  </filter>
+  <filter id="duo-press" color-interpolation-filters="sRGB">
+    <feColorMatrix type="matrix" values=".2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  .2126 .7152 .0722 0 0  0 0 0 1 0"/>
+    <feComponentTransfer><feFuncR type="table" tableValues=".06 .32 .84"/><feFuncG type="table" tableValues=".15 .42 .86"/><feFuncB type="table" tableValues=".28 .55 .89"/></feComponentTransfer>
+  </filter>
   <symbol id="mark" viewBox="0 0 360.44 123.21"><polygon points="286.38 54.13 279.69 69.61 293.07 69.61 286.38 54.13"></polygon><polygon fill="var(--peak)" points="309.76 0 301.22 19.76 343.38 117.29 360.44 117.29 309.76 0"></polygon><polygon fill="var(--peak)" points="289.53 46.82 319.99 117.29 337.06 117.29 298.06 27.07 289.53 46.82"></polygon><path d="M229.84,74.39,214,111.16l-9.09-11.38a11.19,11.19,0,0,0,7.36-3.44A10.64,10.64,0,0,0,215,88.81a12.16,12.16,0,0,0-5.41-10.7q-5.43-3.7-15.68-3.71H170.25v42.8h18.38V103.07l9.13,14.13h32.15l8.65-25.81,8.65,25.81h18.57L247.29,74.39ZM195.66,92.71a6.78,6.78,0,0,1-4.11,1.07h-2.92V85.41h2.92a6.64,6.64,0,0,1,4.11,1.1,3.67,3.67,0,0,1,1.45,3.14A3.54,3.54,0,0,1,195.66,92.71Z"></path><path d="M150.43,101.09h15v-11h-15V86h16.49V74.39h-51.5l-8.25,25.82L98.93,74.39H83.12a36.62,36.62,0,0,0-1.74-5.31,35.9,35.9,0,0,0-8.89-12.4A39.75,39.75,0,0,0,69,53.82l-.07,0-.2-.15-.2-.13,0,0-.18-.13-.2-.14L67.92,53l-.2-.15-.21-.13-.22-.14-.2-.14-.21-.14-.22-.14-.21-.13-.21-.13L66,51.81l-.21-.13-.22-.13-.21-.13-.22-.13L65,51.17l-.22-.12-.22-.13-.21-.12-.23-.12-.22-.11-.23-.13-.22-.11-.22-.11L63,50.1,62.72,50l-.22-.11-.23-.11L62,49.66l-.23-.11-.23-.11-.23-.09-.23-.11-.24-.1-.23-.1-.23-.11-.25-.09-.23-.1-.23-.1-.24-.09-.24-.09-.24-.1-.24-.09a47,47,0,0,0-16.52-2.88h-.14a47.05,47.05,0,0,0-16.53,2.88l-.24.09-.23.1-.24.09-.24.09-.24.1-.24.1-.23.09-.24.11-.23.1-.23.1-.24.11-.23.09-.22.11-.24.11-.23.11-.22.11-.23.11-.23.11-.23.12-.22.11-.22.11-.23.13-.22.11L20,50.8l-.22.12-.22.13-.21.12-.22.12-.22.13-.22.13-.22.13-.21.13-.22.13-.2.13-.22.13-.21.14-.2.14-.21.14-.21.14-.21.13-.21.15-.21.15-.2.14-.2.15-.21.14-.2.15-.2.15-.2.15-.2.16-.2.15-.2.15-.2.16-.19.16-.2.16-.19.15-.19.17-.2.16-.19.16-.2.17-.19.17-.18.17-.2.16-.18.17-.19.18a35.2,35.2,0,0,0-6.09,7.24A35.58,35.58,0,0,0,3,69.08,40,40,0,0,0,3,99.59a35.9,35.9,0,0,0,8.88,12.34l.19.18.19.17.18.16.2.17.18.17.2.17.19.16.19.16.2.17.19.15.2.16.19.16.2.16.2.15.2.15.2.16.2.15.2.15.2.15.21.14.2.15.2.14.21.15.2.15.21.13.22.14.2.14.21.14.22.14.21.13.21.13.21.13.21.13.22.13.21.13.22.13.22.12.22.12.22.13.21.12.23.12.22.11.23.13.22.11.22.11.23.12.23.11.22.11.23.11.23.11.23.11.23.11.23.09.23.11.24.1.23.1.23.11.25.09.23.1.23.1.24.09.24.09.24.1.24.09a47,47,0,0,0,16.52,2.88h.14a47.05,47.05,0,0,0,16.53-2.88l.24-.09.23-.1.24-.09.24-.09.24-.1.24-.1.23-.09.24-.11.23-.1.23-.1.24-.11.23-.09.22-.11.24-.11.23-.11.22-.11.23-.11.23-.11.23-.12.22-.11.22-.11.23-.13.22-.11.22-.12.22-.12.22-.13.21-.12.22-.12.22-.13.22-.13.22-.13.21-.13.22-.13.2-.13.22-.13.21-.14.2-.14.21-.14.21-.14.21-.13.21-.15.21-.15.2-.14.2-.15.21-.14.2-.15.2-.15.2-.15.2-.16.2-.15.2-.15.2-.16.19-.16.2-.16.19-.15.19-.17.2-.16.19-.16.2-.17.19-.17.18-.17.2-.16.18-.17.19-.18a36,36,0,0,0,8.89-12.34,37.9,37.9,0,0,0,2.9-12.85l14.18,30.41h17.43L132,82.52V117.2h35.3V105.59H150.43ZM58.37,80.82v7.23l0,.22v.45l-.05.21v.44l0,.22V90l-.06.21-.06.21v.21l-.06.21V91l-.07.2-.07.2-.07.2-.07.2-.08.2-.08.19-.08.2-.07.19-.09.19-.09.19-.09.19-.09.19-.09.18-.09.18-.1.18-.11.18-.1.19-.1.17-.11.17-.11.18-.11.17-.11.18-.12.16-.12.17-.12.16-.12.17-.14.22-.13.16-.13.16-.13.16-.13.16-.14.15-.13.15-.15.15-.14.16-.15.15-.14.15-.15.13-.15.15L53.6,98l-.15.13-.15.14-.16.13L53,98.5l-.15.12-.16.13-.16.13-.17.12-.16.11-.16.11-.17.12-.16.11-.18.11-.17.11-.17.1-.17.11-.18.09-.17.1-.18.1-.18.09-.18.09-.18.09-.19.08-.18.09-.19.08-.18.07-.19.08-.19.08-.19.06-.2.08-.19.06-.2.07-.19.06-.2.06-.2.06-.2.06h-.42l-.19,0H37.79l-.21,0h-.41l-.2-.06-.2-.06-.2-.06-.19-.06-.2-.07L36,101l-.19-.08-.19-.06-.19-.08-.19-.08-.19-.07-.18-.08-.19-.09-.18-.08-.18-.09-.18-.09-.18-.09-.18-.1-.18-.1-.17-.09-.18-.11-.17-.1-.17-.11-.16-.11-.17-.11-.17-.12-.17-.11L32,99l-.16-.12-.16-.13-.16-.13-.16-.12-.15-.13-.15-.13-.16-.14L30.77,98l-.15-.14-.15-.15-.15-.13-.14-.15L30,97.25l-.14-.16-.14-.15-.14-.15-.14-.15-.13-.16-.13-.16-.13-.16L29,96l-.12-.17-.12-.17-.11-.16-.12-.17-.12-.16L28.32,95l-.12-.17L28,94.6l-.11-.17-.1-.17-.11-.19-.1-.18-.1-.18-.09-.18-.09-.18-.09-.19L27.18,93l-.09-.19L27,92.59l-.08-.19-.08-.2-.1-.2-.07-.2-.07-.2-.07-.2-.07-.2-.07-.2-.06-.2-.06-.21-.06-.21-.06-.21V90L26,89.75l-.05-.2v-.66l0-.21V80.62h0c0-.44.08-.94.1-1.53l.06-.21v-.21l.06-.21.06-.22.06-.2.06-.21.07-.2.07-.21.07-.2L26.6,77l.07-.21.09-.19.08-.19.08-.2.08-.19.09-.19.09-.2.09-.18.09-.19.09-.18.1-.19.1-.17.11-.18.1-.19.11-.17.1-.17.12-.18.11-.17.12-.18.12-.16.11-.17.12-.17.12-.17c.05,0,.08-.11.13-.16l.13-.16.13-.16c0-.06.09-.11.13-.16l.14-.16.14-.16.14-.15.14-.15.15-.16.14-.14.15-.16.15-.14.15-.14.15-.14.16-.14.15-.14.15-.13.16-.13.16-.13.16-.12.16-.13.16-.12.17-.12.17-.11.17-.12.16-.11.17-.11.17-.1.18-.11.17-.1.18-.1.18-.1.18-.09.18-.09.18-.09.18-.09.19-.09.18-.08.26-.11.19-.09.19-.07.19-.07.19-.08.2-.06.2-.07.19-.06.2-.06.2-.06.2-.06,1.08-.21.12,0,.29,0H46.8l.21,0h.21l.2.06.2.06.2.06.19.06.2.07.19.06.2.08.19.07.19.07.19.09.18.07.19.08.18.09.19.09.18.09.18.09.18.09.18.1.17.1.18.1.17.11.17.1.17.11.18.11.16.12.17.11.16.12.16.12.17.13.16.12.16.13L53,70l.16.13.16.14.15.14.15.14.15.14.15.14L54,71l.14.14.15.16.14.15.15.15.13.16.14.16s.09.1.13.16l.13.16.13.16.13.16.12.17.12.17.12.17.12.16.12.18.11.17.11.18.11.17.11.17.1.19.1.18.11.17.1.19.09.18.09.19.09.18.09.2.09.19.09.19.07.2.08.19.08.19.08.21.07.19.07.2.07.21.07.2.06.21.06.2v.22l.06.21.06.21v.43l.05.21v.44l0,.21v.45l0,.23Z"></path><polygon points="277.62 74.39 264.67 104.38 270.18 117.2 277.69 117.2 286.35 91.39 295.01 117.2 313.57 117.2 295.07 74.39 277.62 74.39"></polygon></symbol>
 </svg>
 
@@ -333,6 +535,9 @@ dialog::backdrop { background: rgb(8 18 30 / .55); backdrop-filter: blur(3px); }
     <div class="hero-media">
       <img class="hm hm-bedrock" src="assets/hammering-scaled.jpg" alt="An Overaa carpenter swinging a hammer on a deck against open sky">
       <img class="hm hm-blueprint" src="assets/slac-exterior-1-1-002-v-.jpg" alt="Glass-and-steel research building at SLAC, Menlo Park">
+      <img class="hm hm-cyanotype" src="assets/hammering-scaled.jpg" alt="Cyanotype print of an Overaa carpenter swinging a hammer against open sky">
+      <img class="hm hm-formwork" src="assets/dji-0005-mv-prroelrothit.jpg" alt="Aerial view of a concrete reservoir dome and pump station built by Overaa">
+      <img class="hm hm-press" src="assets/1.jpg" alt="Overaa team at a groundbreaking with hard hats and shovels">
       <img class="hm hm-groundwork" src="assets/overaa-first-frame.jpg" alt="An excavator silhouetted against the dusk sky on an Overaa site">
     </div>
     <div class="wrap hero-body">
@@ -535,6 +740,10 @@ dialog::backdrop { background: rgb(8 18 30 / .55); backdrop-filter: blur(3px); }
   <button type="button" data-dir="bedrock" title="Heritage institution: full-bleed photography, slab serif, navy bands">1 · Bedrock</button>
   <button type="button" data-dir="blueprint" title="Precision: drawing-sheet grid, title blocks, data-dense rows">2 · Blueprint</button>
   <button type="button" data-dir="groundwork" title="Cinematic: night-shift navy, wide heavy type, hi-vis orange">3 · Groundwork</button>
+  <i aria-hidden="true"></i>
+  <button type="button" data-dir="cyanotype" title="Prussian-blue sun prints on rag paper, brushed emulsion, numbered plates">4 · Cyanotype</button>
+  <button type="button" data-dir="formwork" title="Board-formed concrete, form-tie holes, spray-stenciled type, survey orange">5 · Formwork</button>
+  <button type="button" data-dir="press" title="Letterpress broadside: woodtype, speckled ink, halftone plates, red second pass">6 · Press</button>
 </div>
 
 <dialog id="search" aria-label="Search the site">
@@ -610,7 +819,7 @@ chips.addEventListener("click", e => { const c = e.target.closest(".chip"); if (
 showProjects("All");
 
 // Direction switcher: hash > saved > default
-const DIRS = ["bedrock", "blueprint", "groundwork"];
+const DIRS = ["bedrock", "blueprint", "groundwork", "cyanotype", "formwork", "press"];
 function setDir(d) {
   document.documentElement.dataset.dir = d;
   document.querySelectorAll(".dock button").forEach(b => b.setAttribute("aria-pressed", b.dataset.dir === d));
@@ -658,7 +867,7 @@ dlg.addEventListener("click", e => { if (e.target === dlg) dlg.close(); });
 document.addEventListener("keydown", e => {
   const typing = /INPUT|TEXTAREA/.test(document.activeElement.tagName);
   if ((e.key === "/" && !typing) || (e.key === "k" && (e.metaKey || e.ctrlKey))) { e.preventDefault(); openSearch(); }
-  else if (!typing && !dlg.open && ["1", "2", "3"].includes(e.key)) setDir(DIRS[e.key - 1]);
+  else if (!typing && !dlg.open && /^[1-6]$/.test(e.key)) setDir(DIRS[e.key - 1]);
 });
 </script>
 </body>
