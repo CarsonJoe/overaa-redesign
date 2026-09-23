@@ -19,7 +19,7 @@
   --r: 3px; color-scheme: light;
 }
 [data-dir="blueprint"] {
-  --bg: #FFFFFF; --surface: #F5F7F8; --fg: #122030; --muted: #4F6074; --line: #C6D3E0; --grid: #EDF2F7;
+  --bg: #FFFFFF; --surface: #F5F7F8; --fg: #122030; --muted: #4F6074; --line: #C6D3E0;
   --brand: #0067AC; --brand-ink: #FFFFFF; --accent: #F04B47; --peak: #A7BACE; --logo: #00447C;
   --f-display: "Roboto Condensed", "Arial Narrow", sans-serif; --f-body: "Roboto", system-ui, sans-serif; --f-label: "Roboto Mono", ui-monospace, monospace;
   --r: 0px; color-scheme: light;
@@ -80,7 +80,7 @@ kbd { font: 500 12px/1 var(--f-label); padding: 3px 6px; border: 1px solid var(-
 .hero-body { position: relative; display: grid; gap: 22px; align-content: end; }
 .hero h1 { font-size: clamp(44px, 7vw, 96px); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
-.titleblock { display: none; }
+.titleblock, .zones { display: none; }
 
 /* ── Stats ──────────────────────────────────────── */
 .stats { display: grid; grid-template-columns: repeat(4, 1fr); margin: 0; }
@@ -191,11 +191,14 @@ dialog::backdrop { background: rgb(8 18 30 / .55); backdrop-filter: blur(3px); }
    Heritage institution. Full-bleed photography, slab serif, navy bands. */
 [data-dir="bedrock"] .hero { min-height: min(84vh, 760px); display: grid; color: #fff; }
 [data-dir="bedrock"] .hero-media { position: absolute; inset: 0; }
-[data-dir="bedrock"] .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgb(0 30 60 / 0) 30%, rgb(0 38 72 / .88) 100%); }
+[data-dir="bedrock"] .hero-media img { object-position: 72% 30%; }
+[data-dir="bedrock"] .hero-media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 26 52 / .92) 0%, rgb(0 30 60 / .78) 38%, rgb(0 30 60 / .2) 68%, rgb(0 30 60 / 0) 85%), linear-gradient(180deg, rgb(0 30 60 / 0) 55%, rgb(0 30 60 / .55) 100%); }
+[data-dir="bedrock"] .hero h1 { max-width: 10ch; }
+[data-dir="bedrock"] .hero .lede { max-width: 46ch; }
 [data-dir="bedrock"] .hero-body { padding-block: 120px 72px; width: 100%; }
-[data-dir="bedrock"] .hero .eyebrow, [data-dir="bedrock"] .hero .lede { color: rgb(255 255 255 / .86); }
+[data-dir="bedrock"] .hero .eyebrow, [data-dir="bedrock"] .hero .lede { color: rgb(255 255 255 / .92); }
 [data-dir="bedrock"] .hero h1 { font-weight: 800; letter-spacing: -.01em; }
-[data-dir="bedrock"] .hero h1 span { display: block; color: var(--peak); }
+[data-dir="bedrock"] .hero h1 span { display: block; color: #B9CBDD; }
 [data-dir="bedrock"] .hero .btn { background: #fff; color: var(--brand); border-color: #fff; }
 [data-dir="bedrock"] .hero .btn.ghost { background: transparent; color: #fff; }
 [data-dir="bedrock"] .stats-band { background: var(--brand); color: #fff; }
@@ -207,20 +210,32 @@ dialog::backdrop { background: rgb(8 18 30 / .55); backdrop-filter: blur(3px); }
 [data-dir="bedrock"] .grid .proj:first-child .proj-loc { color: rgb(255 255 255 / .8); }
 [data-dir="bedrock"] .grid .proj:first-child h3 { font-size: 28px; }
 [data-dir="bedrock"] .markets-sec { background: var(--surface); }
+@media (max-width: 760px) { [data-dir="bedrock"] .hero-media::after { background: linear-gradient(180deg, rgb(0 26 52 / .55), rgb(0 26 52 / .9)); } }
 @media (max-width: 560px) { [data-dir="bedrock"] .grid .proj:first-child { grid-column: auto; grid-row: auto; } }
 
 /* ════════════ DIRECTION 2 · BLUEPRINT ════════════
    Precision & transparency. Drawing-sheet grid, title blocks, redline accents, data-dense rows. */
-[data-dir="blueprint"] body { background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px); background-size: 32px 32px; }
+[data-dir="blueprint"] body { background: var(--bg); }
 [data-dir="blueprint"] h1, [data-dir="blueprint"] h2 { text-transform: uppercase; font-weight: 700; letter-spacing: -.01em; }
 [data-dir="blueprint"] h3 { font-family: var(--f-body); font-weight: 500; }
 [data-dir="blueprint"] .section, [data-dir="blueprint"] .stats-band { border-bottom: 1px solid var(--line); }
 [data-dir="blueprint"] [data-sheet] .head > div::before { content: attr(data-sheet); font: 500 12px/1 var(--f-label); color: var(--accent); letter-spacing: .1em; }
-[data-dir="blueprint"] .hero { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "body media"; gap: 0 48px; max-width: 1280px; margin-inline: auto; padding: 56px clamp(16px, 4vw, 40px); }
-[data-dir="blueprint"] .hero-media { grid-area: media; position: relative; border: 1px solid var(--fg); padding: 10px; background: var(--bg); }
+[data-dir="blueprint"] .hero { display: grid; grid-template-columns: 1fr 1fr; grid-template-areas: "body media"; gap: 0 56px; width: min(1220px, 100% - 2 * clamp(24px, 4vw, 46px)); margin: 32px auto 64px; padding: 80px clamp(20px, 4vw, 56px) 72px; border: 1px solid var(--fg); outline: 1px solid var(--fg); outline-offset: 6px; }
+[data-dir="blueprint"] .hero::before { content: ""; position: absolute; inset: 23px 0 0; pointer-events: none;
+  background: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='96' height='96'><path d='M43 48h10M48 43v10' stroke='%2392A9C3' stroke-width='1'/></svg>") 0 0 / 96px 96px, radial-gradient(circle, #C8D5E2 0 .9px, transparent 1.3px) -12px -12px / 24px 24px;
+  -webkit-mask: radial-gradient(ellipse 75% 85% at 28% 45%, #000 15%, transparent 78%); mask: radial-gradient(ellipse 75% 85% at 28% 45%, #000 15%, transparent 78%); }
+[data-dir="blueprint"] .zones { display: flex; position: absolute; inset: 0 0 auto; height: 23px; margin: 0; padding: 0; list-style: none; border-bottom: 1px solid var(--fg); }
+[data-dir="blueprint"] .zones li { flex: 1; border-left: 1px solid var(--line); font: 500 10px/22px var(--f-label); color: var(--muted); text-align: center; }
+[data-dir="blueprint"] .zones li:first-child { border-left: 0; }
+[data-dir="blueprint"] .hero-media { grid-area: media; position: relative; align-self: center; padding: 14px;
+  --c: linear-gradient(var(--fg), var(--fg));
+  background: var(--c) 0 0 / 16px 1px, var(--c) 0 0 / 1px 16px, var(--c) 100% 0 / 16px 1px, var(--c) 100% 0 / 1px 16px,
+              var(--c) 0 100% / 16px 1px, var(--c) 0 100% / 1px 16px, var(--c) 100% 100% / 16px 1px, var(--c) 100% 100% / 1px 16px;
+  background-repeat: no-repeat; }
 [data-dir="blueprint"] .hero-media img { aspect-ratio: 4 / 5; height: auto; }
-[data-dir="blueprint"] .hero-media::before { content: "OVERAA · SITE PHOTO · SLAC, MENLO PARK"; position: absolute; left: 10px; bottom: -26px; font: 500 11px/1 var(--f-label); color: var(--muted); letter-spacing: .08em; }
-[data-dir="blueprint"] .hero-body { grid-area: body; padding: 0; align-content: center; }
+[data-dir="blueprint"] .hero-media::before { content: ""; position: absolute; left: 14px; right: 14px; bottom: -24px; height: 11px; border-inline: 1px solid var(--muted); background: linear-gradient(var(--muted), var(--muted)) 0 50% / 100% 1px no-repeat; }
+[data-dir="blueprint"] .hero-media::after { content: "SLAC · MENLO PARK"; position: absolute; left: 50%; bottom: -27px; transform: translateX(-50%); padding-inline: 10px; background: var(--bg); font: 500 10px/17px var(--f-label); letter-spacing: .12em; color: var(--muted); white-space: nowrap; }
+[data-dir="blueprint"] .hero-body { grid-area: body; padding: 0; align-content: center; z-index: 1; }
 [data-dir="blueprint"] .hero h1 { font-size: clamp(44px, 6.4vw, 92px); line-height: .95; }
 [data-dir="blueprint"] .hero h1 span { color: var(--brand); }
 [data-dir="blueprint"] .titleblock { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid var(--fg); margin: 12px 0 0; background: var(--bg); }
@@ -254,7 +269,7 @@ dialog::backdrop { background: rgb(8 18 30 / .55); backdrop-filter: blur(3px); }
 [data-dir="blueprint"] .careers .btn { color: var(--fg); }
 [data-dir="blueprint"] .foot { background: var(--bg); }
 @media (max-width: 900px) {
-  [data-dir="blueprint"] .hero { grid-template-columns: 1fr; grid-template-areas: "body" "media"; gap: 48px; }
+  [data-dir="blueprint"] .hero { grid-template-columns: 1fr; grid-template-areas: "body" "media"; gap: 48px; padding-top: 56px; }
   [data-dir="blueprint"] .hero-media img { aspect-ratio: 16 / 10; }
   [data-dir="blueprint"] .markets { grid-template-columns: 1fr 1fr; }
 }
@@ -500,6 +515,7 @@ body::after { content: ""; position: fixed; inset: 0; z-index: 25; pointer-event
       <img class="hm hm-press" src="assets/1.jpg" alt="Overaa team at a groundbreaking with hard hats and shovels">
       <img class="hm hm-groundwork" src="assets/overaa-first-frame.jpg" alt="An excavator silhouetted against the dusk sky on an Overaa site">
     </div>
+    <ol class="zones" aria-hidden="true"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li></ol>
     <div class="wrap hero-body">
       <p class="eyebrow">Fifth-generation general contractor · Richmond, California</p>
       <h1>Building community <span>since 1907.</span></h1>
